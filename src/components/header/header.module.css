@@ -1,0 +1,59 @@
+.headerContainer {
+  display: flex;
+  margin-top: 0.5em;
+  width: 100vw;
+  justify-content: space-around;
+}
+
+.headerContainer .element {
+  background-color: #eef;
+  color: #223;
+  display: flex;
+  border-radius: 1em;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.instruction {
+  width: 45vw;
+}
+
+.score {
+  width: 24vw;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.menuButton {
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger {
+  height: 0.3em;
+  width: 1.2em;
+  background-color: #223;
+  border: 1px solid #eef;
+  border-radius: 0.2em;
+}
+
+.menuContainer {
+  z-index: 2;
+  position: absolute;
+  background-color: #335;
+  width: 50vw;
+  right: 0;
+}
+
+.menuItem {
+  height: 2em;
+  border: 1px solid #112;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
