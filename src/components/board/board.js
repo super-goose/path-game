@@ -10,6 +10,29 @@ Elliptical Arc Curve: A, a
 ClosePath: Z, z
 */
 
+const Path = ({ d, dark, light }) => {
+  const idShadow = useId();
+  const idPath = useId();
+  const idFill = useId();
+
+  return (
+    <>
+      <path id={idShadow} d={d} />
+      <use
+        href={`#${idShadow}`}
+        fill="none"
+        strokeWidth={20}
+        stroke="#222"
+        strokeOpacity={0.5}
+      />
+      <path id={idPath} d={d} />
+      <use href={`#${idPath}`} fill="none" stroke={light} strokeWidth={15} />
+      <path id={idFill} d={d} />
+      <use href={`#${idFill}`} fill="none" stroke={dark} strokeWidth={10} />
+    </>
+  );
+};
+
 const Tile = ({ x, y }) => {
   const id0 = useId();
   const id1 = useId();
@@ -23,31 +46,26 @@ const Tile = ({ x, y }) => {
   const id6 = useId();
   const id7 = useId();
 
+  const id8 = useId();
+  const id9 = useId();
+
   return (
     <g fill="none" stroke-width="5">
-      <path id={id4} d="M 25, 100 L 25, 0" />
-      <use href={`#${id4}`} fill="none" stroke="green" strokeWidth={15} />
+      <Path d="M 25, 100 L 25, 0" dark="darkgreen" light="green" />
 
-      <path id={id5} d="M 25, 100 L 25, 0" />
-      <use href={`#${id5}`} fill="none" stroke="darkgreen" strokeWidth={10} />
-
-      <path id={id0} d="M 25, 100 A 25,25 0,0,1 75,100" />
-      <use href={`#${id0}`} fill="none" stroke="red" strokeWidth={15} />
-
-      <path
-        id={id2}
+      <Path
         d="
         M 25, 100
         A 25,25 0,0,1 75,100"
+        dark="darkred"
+        light="red"
       />
-      <use href={`#${id2}`} fill="none" stroke="darkred" strokeWidth={10} />
 
       {/* <path
         id={id1}
         d="M 25,100 T 25,85 T 40,60 T 50,50 T 60,40 T 75,15 T 75,0"
       /> */}
-      <path
-        id={id1}
+      <Path
         d="
           M 25,100
           L 25,85
@@ -56,26 +74,41 @@ const Tile = ({ x, y }) => {
           T 60,45
           Q 75,37 75,15
           L 75,0"
+        light="blue"
+        dark="darkblue"
       />
-      <use href={`#${id1}`} fill="none" stroke="blue" strokeWidth={15} />
-      <path
-        id={id3}
+
+      <Path d="M 25,100 A 75,75 0,0,1 100,25" light="yellow" dark="#aaaa00" />
+
+      <Path
         d="
           M 25,100
-          L 25,85
-          Q 25,63 40,55
-          L 50,50
-          T 60,45
-          Q 75,37 75,15
-          L 75,0"
+          A 25,25 0,0,1 50,75
+          L 100,75
+        "
+        light="#00ffff"
+        dark="#00aaaa"
       />
-      <use href={`#${id3}`} fill="none" stroke="darkblue" strokeWidth={10} />
 
-      <path id={id6} d="M 25,100 A 75,75 0,0,1 100,25" />
-      <use href={`#${id6}`} fill="none" stroke="yellow" strokeWidth={15} />
+      <Path
+        d="
+          M 25,100
+          L 25,50
+          A 25,25 0,0,0 0,25
+        "
+        light="#ffaa00"
+        dark="#aa6600"
+      />
 
-      <path id={id7} d="M 25,100 A 75,75 0,0,1 100,25" />
-      <use href={`#${id7}`} fill="none" stroke="darkyellow" strokeWidth={10} />
+      <Path
+        d="
+          M 25,100
+          A 25,25 0,0,0 0,75
+        "
+        light="#ff00ff"
+        dark="#aa00aa"
+      />
+
       {/*
         M 25, 100
         A 25,25 0,0,1 75,100"
