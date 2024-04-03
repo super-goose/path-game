@@ -60,16 +60,14 @@ const Path = ({ d, dark, light, filled, rotate, flip }) => {
 };
 
 const Tile = ({ x, y, definition }) => {
-  console.log(definition);
-  const layers = buildLayers(definition).splice(1, 1);
+  const layers = buildLayers(definition); //.splice(1, 1);
 
-  console.log("layers:", layers);
   return (
     <g fill="none">
       {layers.map((layer) => (
         <Path
           key={`${x},${y}->${layer.name}->${layer.rotate}->${layer.flip}`}
-          d={pathsByTileOpenings(layer.name)}
+          d={pathsByTileOpenings(layer.name, layer.flip, layer.rotate)}
           light="blue"
           dark="darkblue"
           rotate={layer.rotate}
