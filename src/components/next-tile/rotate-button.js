@@ -6,6 +6,6 @@ export const RotateButton = ({ direction, onClick }) => (
     className={`rotate-icon ${direction}`}
     onClick={onClick}
   >
-    {" "}
+    {direction.toUpperCase()}
   </button>
 );

@@ -1,10 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import reducer from './reducer';
-import middleware from './middleware';
+import { configureStore } from "@reduxjs/toolkit";
+import handSlice from "./slices/hand";
 
-const middlewareEnhancer = applyMiddleware(middleware, thunk);
-
-const store = createStore(reducer, middlewareEnhancer);
+const store = configureStore({
+  reducer: {
+    hand: handSlice,
+  },
+});
 
 export default store;

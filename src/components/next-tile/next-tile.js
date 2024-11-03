@@ -1,27 +1,43 @@
 import React from "react";
 import { Tile } from "../tile";
 import { RotateButton } from "./rotate-button";
+import { useSelector } from "react-redux";
+import styles from "./next-tile.module.css";
+import { TILE_SIZE } from "@/utils/canvas-drawing";
+
+const getHand = ({ hand }) => hand;
 
 const TileSpace = ({ tile, sprites, index, rotateCCW, rotateCW, playTile }) => (
-  <div className="tile-space">
+  <div className={`tile-space ${styles.tileSpace}`}>
     <RotateButton direction="cw" onClick={() => rotateCW(index)} />
-    <Tile sprites={sprites} tile={tile} onClick={() => playTile(index)} />
+    <div
+      style={{ width: TILE_SIZE, height: TILE_SIZE, backgroundColor: "white" }}
+    >
+      <svg viewBox="0, 0, 100, 100">
+        <Tile definition={tile} onClick={() => playTile(index)} />
+      </svg>
+    </div>
+
     <RotateButton direction="ccw" onClick={() => rotateCCW(index)} />
   </div>
 );
 
-export const NextUp = ({ sprites, hand, rotateCCW, rotateCW, playTile }) => (
-  <div className="container">
-    {hand.map((tile, i) => (
-      <TileSpace
-        key={`tilespace-${tile.order.join("-")}`}
-        index={i}
-        sprites={sprites}
-        tile={tile}
-        rotateCCW={rotateCCW}
-        rotateCW={rotateCW}
-        playTile={playTile}
-      />
-    ))}
-  </div>
-);
+export const NextUp = ({ sprites, playTile }) => {
+  const hand = useSelector(getHand);
+  console.log(hand);
+  return (
+    <div className={`container ${styles.nextTileContainer}`}>
+      {hand.map((tile, i) => (
+        <TileSpace
+          key={`tilespace-${tile.order.join("-")}`}
+          index={i}
+          sprites={sprites}
+          tile={tile}
+          // rotateCCW={rotateCCW}
+          // rotateCW={rotateCW}
+          // playTile={playTile}
+        />
+      ))}
+    </div>
+  );
+};
