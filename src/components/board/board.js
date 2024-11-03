@@ -11,9 +11,18 @@ Cubic Bézier Curve: C, c, S, s
 Quadratic Bézier Curve: Q, q, T, t
 Elliptical Arc Curve: A, a
 ClosePath: Z, z
+
+light="green" dark="darkgreen"
+light="red" dark="darkred"
+light="blue" dark="darkblue"
+light="yellow" dark="#aaaa00"
+light="#00ffff" dark="#00aaaa"
+light="#ffaa00" dark="#aa6600"
+light="#ff00ff" dark="#aa00aa"
+/> 
 */
 
-const Path = ({ d, dark, light, filled, rotate, flip }) => {
+const Path = ({ d, dark, light, filled, flip }) => {
   const idShadow = useId();
   const idPath = useId();
   const idFill = useId();
@@ -21,16 +30,13 @@ const Path = ({ d, dark, light, filled, rotate, flip }) => {
 
   const TILE_SIZE = 100;
 
-  const dx_on_rotate = [90, 180].includes(rotate) ? TILE_SIZE : 0; // eslint-disable-line
-  const dy_on_rotate = [180, 270].includes(rotate) ? TILE_SIZE : 0; // eslint-disable-line
-
   const scale = flip ? "scale(1)" : "";
   return (
     <g
-      transform={[
-        scale,
-        `rotate(${rotate}, ${TILE_SIZE / 2}, ${TILE_SIZE / 2})`,
-      ]}
+    // transform={[
+    //   scale,
+    //   `rotate(${rotate}, ${TILE_SIZE / 2}, ${TILE_SIZE / 2})`,
+    // ]}
     >
       <path id={idShadow} d={d} />
       <use
@@ -50,7 +56,7 @@ const Path = ({ d, dark, light, filled, rotate, flip }) => {
           <use
             href={`#${idColorFill}`}
             fill="none"
-            stroke={dark}
+            stroke={light}
             strokeWidth={9}
           />
         </>
@@ -61,9 +67,12 @@ const Path = ({ d, dark, light, filled, rotate, flip }) => {
 
 const Tile = ({ x, y, definition }) => {
   const layers = buildLayers(definition); //.splice(1, 1);
-
+  console.log(layers);
   return (
-    <g fill="none">
+    <g
+      fill="none"
+      transform={`scale(.2, .2) translate(${x * 100}, ${y * 100})`}
+    >
       {layers.map((layer) => (
         <Path
           key={`${x},${y}->${layer.name}->${layer.rotate}->${layer.flip}`}
@@ -72,49 +81,40 @@ const Tile = ({ x, y, definition }) => {
           dark="darkblue"
           rotate={layer.rotate}
           flip={layer.flip}
+          filled={layer.filled}
         />
       ))}
-      {/* <Path d={pathsByTileOpenings("0-5")} dark="darkgreen" light="green" />
-
-      <Path d={pathsByTileOpenings("0-1")} dark="darkred" light="red" />
-
-      <Path d={pathsByTileOpenings("0-4")} light="blue" dark="darkblue" />
-
-      <Path d={pathsByTileOpenings("0-3")} light="yellow" dark="#aaaa00" />
-
-      <Path d={pathsByTileOpenings("0-2")} light="#00ffff" dark="#00aaaa" />
-
-      <Path d={pathsByTileOpenings("0-6")} light="#ffaa00" dark="#aa6600" />
-
-      <Path
-        d={pathsByTileOpenings("0-7")}
-        light="#ff00ff"
-        dark="#aa00aa"
-        filled
-      /> */}
     </g>
   );
 };
 
 export const Board = () => {
   const t = {
-    0: { out: 6, connected: false },
-    1: { out: 3, connected: false },
-    2: { out: 5, connected: false },
-    3: { out: 1, connected: false },
-    4: { out: 7, connected: false },
-    5: { out: 2, connected: false },
-    6: { out: 0, connected: false },
-    7: { out: 4, connected: false },
-    order: [6, 0, 5, 2, 7, 4, 1, 3],
-  }; // generateTile();
-  console.log(JSON.stringify(t));
+    0: { out: 6, connected: true },
+    1: { out: 4, connected: false },
+    2: { out: 3, connected: false },
+    3: { out: 2, connected: false },
+    4: { out: 1, connected: false },
+    5: { out: 7, connected: false },
+    6: { out: 0, connected: true },
+    7: { out: 5, connected: false },
+    order: [6, 0, 3, 2, 5, 7, 1, 4],
+  };
+  // const t = generateTile();
+  console.log(JSON.stringify(t, null, 2));
 
   return (
     <section>
       <div className={style.board}>
         <svg viewBox="0, 0, 100, 100">
           <Tile x={0} y={0} definition={t} />
+          <Tile x={0} y={1} definition={generateTile()} />
+          <Tile x={0} y={2} definition={generateTile()} />
+          <Tile x={0} y={3} definition={generateTile()} />
+          <Tile x={1} y={0} definition={generateTile()} />
+          <Tile x={1} y={1} definition={generateTile()} />
+          <Tile x={1} y={2} definition={generateTile()} />
+          <Tile x={1} y={3} definition={generateTile()} />
         </svg>
       </div>
     </section>

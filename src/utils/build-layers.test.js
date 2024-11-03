@@ -23,10 +23,10 @@ test("it generates an array", () => {
 test("it builds the correct layers in the correct order (0)", () => {
   const layers = buildLayers(generic);
   const target = [
-    { name: "0-1", rotate: 0, flip: false },
-    { name: "0-1", rotate: 90, flip: false },
-    { name: "0-1", rotate: 180, flip: false },
-    { name: "0-1", rotate: 270, flip: false },
+    { name: "0-1", rotate: 0, flip: false, filled: false },
+    { name: "0-1", rotate: 90, flip: false, filled: false },
+    { name: "0-1", rotate: 180, flip: false, filled: false },
+    { name: "0-1", rotate: 270, flip: false, filled: false },
   ];
   expect(layers).toEqual(target);
 });
@@ -45,10 +45,10 @@ test("it builds the correct layers in the correct order (1)", () => {
   };
   const layers = buildLayers(generic);
   const target = [
-    { name: "0-4", rotate: 0, flip: false },
-    { name: "0-2", rotate: 0, flip: true },
-    { name: "0-3", rotate: 90, flip: false },
-    { name: "0-5", rotate: 90, flip: true },
+    { name: "0-4", rotate: 0, flip: false, filled: false },
+    { name: "0-2", rotate: 0, flip: true, filled: false },
+    { name: "0-3", rotate: 90, flip: false, filled: false },
+    { name: "0-5", rotate: 90, flip: true, filled: false },
   ];
   expect(layers).toEqual(target);
 });
@@ -67,15 +67,89 @@ test("it builds the correct layers in the correct order (2)", () => {
   };
   const layers = buildLayers(generic);
   const target = [
-    { name: "0-3", rotate: 0, flip: false },
-    { name: "0-3-filled", rotate: 0, flip: false },
-    { name: "0-2", rotate: 180, flip: false },
-    { name: "0-7", rotate: 0, flip: true },
-    { name: "0-7-filled", rotate: 0, flip: true },
-    { name: "0-6", rotate: 180, flip: true },
+    { name: "0-3", rotate: 0, flip: false, filled: true },
+    { name: "0-2", rotate: 180, flip: false, filled: false },
+    { name: "0-7", rotate: 0, flip: true, filled: true },
+    { name: "0-6", rotate: 180, flip: true, filled: false },
   ];
   expect(layers).toEqual(target);
 });
+
+test("it builds the correct layers for this known odd case", () => {
+  const tile = {
+    0: { out: 6, connected: false },
+    1: { out: 4, connected: false },
+    2: { out: 3, connected: false },
+    3: { out: 2, connected: false },
+    4: { out: 1, connected: false },
+    5: { out: 7, connected: false },
+    6: { out: 0, connected: false },
+    7: { out: 5, connected: false },
+    order: [6, 0, 3, 2, 5, 7, 1, 4],
+  };
+  const layers = buildLayers(tile);
+  const target = [
+    { name: "0-6", rotate: 0, flip: false, filled: false },
+    { name: "0-1", rotate: 90, flip: false, filled: false },
+    { name: "0-6", rotate: 180, flip: true, filled: false },
+    { name: "0-5", rotate: 0, flip: true, filled: false },
+  ];
+  expect(layers).toEqual(target);
+});
+
+/*
+
+0: Object 
+1: Object 
+2: Object 
+3: Object 
+
+{
+  "0": {
+    "out": 6,
+    "connected": false
+  },
+  "1": {
+    "out": 4,
+    "connected": false
+  },
+  "2": {
+    "out": 3,
+    "connected": false
+  },
+  "3": {
+    "out": 2,
+    "connected": false
+  },
+  "4": {
+    "out": 1,
+    "connected": false
+  },
+  "5": {
+    "out": 7,
+    "connected": false
+  },
+  "6": {
+    "out": 0,
+    "connected": false
+  },
+  "7": {
+    "out": 5,
+    "connected": false
+  },
+  "order": [
+    6,
+    0,
+    3,
+    2,
+    5,
+    7,
+    1,
+    4
+  ]
+}
+
+*/
 
 /*
 "0-1-filled"

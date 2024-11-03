@@ -1,5 +1,5 @@
 .board {
-  width: 100vw;
+  width: 100%;
   height: 100vw;
   display: flex;
   align-items: center;
@@ -11,5 +11,5 @@
 
 .board svg {
   height: 100vw;
-  width: 100vw;
+  width: 100%;
 }

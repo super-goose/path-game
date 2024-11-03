@@ -12,7 +12,7 @@ export const buildLayers = (tile) => {
 
     addressed[i] = true;
     addressed[tile[i].out] = true;
-    const { connected } = tile[i];
+    const filled = tile[i].connected;
 
     let rotate = 0;
     const flip = _in % 2 === 1;
@@ -29,11 +29,7 @@ export const buildLayers = (tile) => {
       _out = getFlippedOut(_out);
     }
     const name = `${_in}-${_out}`;
-    // layers.push({ name: `${name}-shadow`, rotate, flip });
-    layers.push({ name, rotate, flip });
-    if (connected) {
-      layers.push({ name: `${name}-filled`, rotate, flip });
-    }
+    layers.push({ name, rotate, flip, filled });
   });
 
   return layers;

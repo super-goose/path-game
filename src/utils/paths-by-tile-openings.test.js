@@ -89,80 +89,13 @@ describe("pathsByTileOpenings", () => {
       "M 100,25 A 25,25 0,0,0 75,50 L 75,100"
     );
 
-    // expect(pathsByTileOpenings("0-1", false, 90)).toBe(
-    //   "M 25,100 A 25,25 0,0,1 75,100"
-    // );
-    // expect(pathsByTileOpenings("0-1", false, 180)).toBe(
-    //   "M 25,100 A 25,25 0,0,1 75,100"
-    // );
-    // expect(pathsByTileOpenings("0-1", false, 270)).toBe(
-    //   "M 25,100 A 25,25 0,0,1 75,100"
-    // );
-
-    // expect(pathsByTileOpenings("0-2", false, 90)).toBe(
-    //   "M 25,100 A 25,25 0,0,1 50,75 L 100,75"
-    // );
-    // expect(pathsByTileOpenings("0-2", false, 180)).toBe(
-    //   "M 25,100 A 25,25 0,0,1 50,75 L 100,75"
-    // );
-    // expect(pathsByTileOpenings("0-2", false, 270)).toBe(
-    //   "M 25,100 A 25,25 0,0,1 50,75 L 100,75"
-    // );
-
-    // expect(pathsByTileOpenings("0-3", false, 90)).toBe(
-    //   "M 25,100 A 75,75 0,0,1 100,25"
-    // );
-    // expect(pathsByTileOpenings("0-3", false, 180)).toBe(
-    //   "M 25,100 A 75,75 0,0,1 100,25"
-    // );
-    // expect(pathsByTileOpenings("0-3", false, 270)).toBe(
-    //   "M 25,100 A 75,75 0,0,1 100,25"
-    // );
-
-    // expect(pathsByTileOpenings("0-4", false, 90)).toBe(
-    //   "M 25,100 L 25,85 Q 25,63 40,55 L 50,50 T 60,45 Q 75,37 75,15 L 75,0"
-    // );
-    // expect(pathsByTileOpenings("0-4", false, 180)).toBe(
-    //   "M 25,100 L 25,85 Q 25,63 40,55 L 50,50 T 60,45 Q 75,37 75,15 L 75,0"
-    // );
-    // expect(pathsByTileOpenings("0-4", false, 270)).toBe(
-    //   "M 25,100 L 25,85 Q 25,63 40,55 L 50,50 T 60,45 Q 75,37 75,15 L 75,0"
-    // );
-
-    // expect(pathsByTileOpenings("0-5", false, 90)).toBe(
-    //   "M 25,100 L 25,0"
-    // );
-    // expect(pathsByTileOpenings("0-5", false, 180)).toBe(
-    //   "M 25,100 L 25,0"
-    // );
-    // expect(pathsByTileOpenings("0-5", false, 270)).toBe(
-    //   "M 25,100 L 25,0"
-    // );
-
-    // expect(pathsByTileOpenings("0-6", false, 90)).toBe(
-    //   "M 25,100 L 25,50 A 25,25 0,0,0 0,25"
-    // );
-    // expect(pathsByTileOpenings("0-6", false, 180)).toBe(
-    //   "M 25,100 L 25,50 A 25,25 0,0,0 0,25"
-    // );
-    // expect(pathsByTileOpenings("0-6", false, 270)).toBe(
-    //   "M 25,100 L 25,50 A 25,25 0,0,0 0,25"
-    // );
-
-    // expect(pathsByTileOpenings("0-7", false, 90)).toBe(
-    //   "M 25,100 A 25,25 0,0,0 0,75"
-    // );
-    // expect(pathsByTileOpenings("0-7", false, 180)).toBe(
-    //   "M 25,100 A 25,25 0,0,0 0,75"
-    // );
-    // expect(pathsByTileOpenings("0-7", false, 270)).toBe(
-    //   "M 25,100 A 25,25 0,0,0 0,75"
-    // );
+    expect(pathsByTileOpenings("0-6", true, 180)).toBe(
+      "M 25,0 L 25,50 A 25,25 0,0,1 0,75"
+    );
   });
 });
 
-// export const pathsByTileOpenings = (openings, flip, rotate) => {
-//   return {
+//   {
 //     "0-1": ["M 25,100", "A 25,25 0,0,1 75,100"].join(" "),
 //     "0-2": ["M 25,100", "A 25,25 0,0,1 50,75", "L 100,75"].join(" "),
 //     "0-3": ["M 25,100", "A 75,75 0,0,1 100,25"].join(" "),
@@ -179,4 +112,3 @@ describe("pathsByTileOpenings", () => {
 //     "0-6": ["M 25,100", "L 25,50", "A 25,25 0,0,0 0,25"].join(" "),
 //     "0-7": ["M 25,100", "A 25,25 0,0,0 0,75"].join(" "),
 //   }[openings];
-// };
