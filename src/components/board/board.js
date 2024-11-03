@@ -1,3 +1,4 @@
+"use client";
 import React, { useId } from "react";
 import style from "./board.module.css";
 import { generateTile } from "@/utils/generate-tile";

@@ -4,6 +4,7 @@ import { RotateButton } from "./rotate-button";
 import { useSelector } from "react-redux";
 import styles from "./next-tile.module.css";
 import { TILE_SIZE } from "@/utils/canvas-drawing";
+import { rotateCCW, rotateCW } from "@/state/slices/hand";
 
 const getHand = ({ hand }) => hand;
 
@@ -24,6 +25,7 @@ const TileSpace = ({ tile, sprites, index, rotateCCW, rotateCW, playTile }) => (
 
 export const NextUp = ({ sprites, playTile }) => {
   const hand = useSelector(getHand);
+
   console.log(hand);
   return (
     <div className={`container ${styles.nextTileContainer}`}>
@@ -33,9 +35,9 @@ export const NextUp = ({ sprites, playTile }) => {
           index={i}
           sprites={sprites}
           tile={tile}
-          // rotateCCW={rotateCCW}
-          // rotateCW={rotateCW}
-          // playTile={playTile}
+          rotateCCW={rotateCCW}
+          rotateCW={rotateCW}
+          // playTile={playTileq}
         />
       ))}
     </div>

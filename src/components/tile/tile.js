@@ -66,7 +66,7 @@ const Path = ({ d, dark, light, filled, flip }) => {
 
 export const Tile = ({ x, y, definition }) => {
   const layers = buildLayers(definition); //.splice(1, 1);
-  console.log(layers);
+  console.log({ definition, layers });
   return (
     <g
       fill="none"
