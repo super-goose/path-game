@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tile } from "../tile";
 import { ControlButton } from "./control-button";
 import { useSelector } from "react-redux";
@@ -10,7 +10,7 @@ const getHand = ({ hand }) => hand;
 
 const TileSpace = ({ tile, sprites, index, rotateCCW, rotateCW, playTile }) => (
   <div className={`tile-space ${styles.tileSpace}`}>
-    <ControlButton direction="cw" onClick={() => rotateCW(index)} />
+    {/* <ControlButton direction="cw" onClick={() => rotateCW(index)} /> */}
     <div
       style={{ width: TILE_SIZE, height: TILE_SIZE, backgroundColor: "white" }}
     >
@@ -19,27 +19,33 @@ const TileSpace = ({ tile, sprites, index, rotateCCW, rotateCW, playTile }) => (
       </svg>
     </div>
 
-    <ControlButton direction="ccw" onClick={() => rotateCCW(index)} />
+    {/* <ControlButton direction="ccw" onClick={() => rotateCCW(index)} /> */}
   </div>
 );
 
 export const NextUp = ({ sprites, playTile }) => {
+  const [index, setIndex] = useState(0);
   const hand = useSelector(getHand);
 
-  console.log(hand);
   return (
     <section className={`container ${styles.nextTileContainer}`}>
-      {hand.map((tile, i) => (
-        <TileSpace
-          key={`tilespace-${tile.order.join("-")}`}
-          index={i}
-          sprites={sprites}
-          tile={tile}
-          rotateCCW={rotateCCW}
-          rotateCW={rotateCW}
-          // playTile={playTileq}
-        />
-      ))}
+      <ControlButton direction="l" onClick={() => rotateCCW(index)} />
+      <ControlButton direction="ccw" onClick={() => rotateCCW(index)} />
+      <div className={styles.nextTileTileContainer}>
+        {hand.map((tile, i) => (
+          <TileSpace
+            key={`tilespace-${tile.order.join("-")}`}
+            index={i}
+            sprites={sprites}
+            tile={tile}
+            rotateCCW={rotateCCW}
+            rotateCW={rotateCW}
+            // playTile={playTileq}
+          />
+        ))}
+      </div>
+      <ControlButton direction="cw" onClick={() => rotateCCW(index)} />
+      <ControlButton direction="r" onClick={() => rotateCCW(index)} />
     </section>
   );
 };
