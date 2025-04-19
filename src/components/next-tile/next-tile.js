@@ -28,18 +28,20 @@ export const NextUp = ({ sprites, playTile }) => {
 
   console.log(hand);
   return (
-    <div className={`container ${styles.nextTileContainer}`}>
-      {hand.map((tile, i) => (
-        <TileSpace
-          key={`tilespace-${tile.order.join("-")}`}
-          index={i}
-          sprites={sprites}
-          tile={tile}
-          rotateCCW={rotateCCW}
-          rotateCW={rotateCW}
-          // playTile={playTileq}
-        />
-      ))}
-    </div>
+    <section>
+      <div className={`container ${styles.nextTileContainer}`}>
+        {hand.map((tile, i) => (
+          <TileSpace
+            key={`tilespace-${tile.order.join("-")}`}
+            index={i}
+            sprites={sprites}
+            tile={tile}
+            rotateCCW={rotateCCW}
+            rotateCW={rotateCW}
+            // playTile={playTileq}
+          />
+        ))}
+      </div>
+    </section>
   );
 };

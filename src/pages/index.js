@@ -21,12 +21,7 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
         <Header score={666} />
         <Board />
-        <NextUp
-        // hand={hand}
-        // rotateCCW={rotateCCW}
-        // rotateCW={rotateCW}
-        // playTile={console.log}
-        />
+        <NextUp />
       </main>
     </Provider>
   );
