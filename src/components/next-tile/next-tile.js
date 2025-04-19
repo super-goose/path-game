@@ -1,6 +1,6 @@
 import React from "react";
 import { Tile } from "../tile";
-import { RotateButton } from "./rotate-button";
+import { ControlButton } from "./control-button";
 import { useSelector } from "react-redux";
 import styles from "./next-tile.module.css";
 import { TILE_SIZE } from "@/utils/canvas-drawing";
@@ -10,7 +10,7 @@ const getHand = ({ hand }) => hand;
 
 const TileSpace = ({ tile, sprites, index, rotateCCW, rotateCW, playTile }) => (
   <div className={`tile-space ${styles.tileSpace}`}>
-    <RotateButton direction="cw" onClick={() => rotateCW(index)} />
+    <ControlButton direction="cw" onClick={() => rotateCW(index)} />
     <div
       style={{ width: TILE_SIZE, height: TILE_SIZE, backgroundColor: "white" }}
     >
@@ -19,7 +19,7 @@ const TileSpace = ({ tile, sprites, index, rotateCCW, rotateCW, playTile }) => (
       </svg>
     </div>
 
-    <RotateButton direction="ccw" onClick={() => rotateCCW(index)} />
+    <ControlButton direction="ccw" onClick={() => rotateCCW(index)} />
   </div>
 );
 
@@ -28,20 +28,18 @@ export const NextUp = ({ sprites, playTile }) => {
 
   console.log(hand);
   return (
-    <section>
-      <div className={`container ${styles.nextTileContainer}`}>
-        {hand.map((tile, i) => (
-          <TileSpace
-            key={`tilespace-${tile.order.join("-")}`}
-            index={i}
-            sprites={sprites}
-            tile={tile}
-            rotateCCW={rotateCCW}
-            rotateCW={rotateCW}
-            // playTile={playTileq}
-          />
-        ))}
-      </div>
+    <section className={`container ${styles.nextTileContainer}`}>
+      {hand.map((tile, i) => (
+        <TileSpace
+          key={`tilespace-${tile.order.join("-")}`}
+          index={i}
+          sprites={sprites}
+          tile={tile}
+          rotateCCW={rotateCCW}
+          rotateCW={rotateCW}
+          // playTile={playTileq}
+        />
+      ))}
     </section>
   );
 };

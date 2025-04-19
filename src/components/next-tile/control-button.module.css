@@ -1,0 +1,7 @@
+.controlButton {
+  font-size: 3rem;
+  background-color: #ccc;
+  color: black;
+  padding: 0 1rem 0.5rem;
+  border-radius: 1rem;
+}
