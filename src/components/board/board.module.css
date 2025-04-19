@@ -1,11 +1,12 @@
 .board {
   width: 100%;
-  height: calc(100vh - 150px - 3rem);
+
   display: flex;
+  flex-grow: 1;
   align-items: center;
   justify-content: center;
-  background-color: #eee;
-  /* rgba(0, 0, 255, 0.279); */
+
+  background-color: #ccc;
   margin: 1rem 0;
 }
 
