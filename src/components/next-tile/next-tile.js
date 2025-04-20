@@ -29,23 +29,25 @@ export const NextUp = ({ sprites, playTile }) => {
 
   return (
     <section className={`container ${styles.nextTileContainer}`}>
-      <ControlButton direction="l" onClick={() => rotateCCW(index)} />
+      <ControlButton direction="prev" onClick={() => rotateCCW(index)} />
       <ControlButton direction="ccw" onClick={() => rotateCCW(index)} />
       <div className={styles.nextTileTileContainer}>
-        {hand.map((tile, i) => (
-          <TileSpace
-            key={`tilespace-${tile.order.join("-")}`}
-            index={i}
-            sprites={sprites}
-            tile={tile}
-            rotateCCW={rotateCCW}
-            rotateCW={rotateCW}
-            // playTile={playTileq}
-          />
-        ))}
+        <div>
+          {hand.map((tile, i) => (
+            <TileSpace
+              key={`tilespace-${tile.order.join("-")}`}
+              index={i}
+              sprites={sprites}
+              tile={tile}
+              rotateCCW={rotateCCW}
+              rotateCW={rotateCW}
+              // playTile={playTileq}
+            />
+          ))}
+        </div>
       </div>
       <ControlButton direction="cw" onClick={() => rotateCCW(index)} />
-      <ControlButton direction="r" onClick={() => rotateCCW(index)} />
+      <ControlButton direction="next" onClick={() => rotateCCW(index)} />
     </section>
   );
 };

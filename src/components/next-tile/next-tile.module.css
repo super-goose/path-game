@@ -4,15 +4,26 @@
   width: 80%;
   height: 150px;
   justify-content: space-between;
+  align-items: center;
   padding: 0 2rem;
 }
 
 .nextTileTileContainer {
-  /*  */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid red;
+  height: 7rem;
+  overflow-y: hidden;
 }
 
 .tileSpace {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1rem;
+}
+
+.tileSpace:last-of-type {
+  margin-bottom: 0;
 }
