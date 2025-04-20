@@ -17,6 +17,32 @@
   overflow-y: hidden;
 }
 
+.slidingUp {
+  animation: slideUp 0.5s 1;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-64px - 1rem));
+  }
+}
+
+.slidingDown {
+  animation: slideDown 0.5s 1;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(64px + 1rem));
+  }
+}
+
 .tileSpace {
   display: flex;
   flex-direction: column;

@@ -65,13 +65,13 @@ const Path = ({ d, dark, light, filled, flip }) => {
 };
 
 export const Tile = ({ x, y, definition }) => {
-  const layers = buildLayers(definition); //.splice(1, 1);
-  console.log({ definition, layers });
+  const layers = buildLayers(definition);
+  const translate =
+    isNaN(x) || isNaN(y)
+      ? ""
+      : `scale(.2, .2) translate(${x * 100}, ${y * 100})`;
   return (
-    <g
-      fill="none"
-      transform={`scale(.2, .2) translate(${x * 100}, ${y * 100})`}
-    >
+    <g fill="none" transform={translate}>
       {layers.map((layer) => (
         <Path
           key={`${x},${y}->${layer.name}->${layer.rotate}->${layer.flip}`}
