@@ -22,6 +22,8 @@ export const NextUp = ({ sprites, playTile }) => {
   const dispatch = useDispatch();
 
   const rotateCurrentCCW = useCallback(() => {
+    // TODO: you need this link here to prevent the flash:
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event
     setRotatingCCW(true);
     setTimeout(() => {
       dispatch(rotateCCW(index));
