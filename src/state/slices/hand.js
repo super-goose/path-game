@@ -17,7 +17,8 @@ export const handSlice = createSlice({
       state.splice(index, 1);
       return [...state, generateTile()];
     },
-    rotateCCW: (state, index) => {
+    rotateCCW: (state, { payload: index }) => {
+      console.log({ state, index });
       return state.map((tile, i) => {
         if (i === index) {
           return rotateTile(tile, COUNTERCLOCKWISE);
@@ -25,7 +26,8 @@ export const handSlice = createSlice({
         return tile;
       });
     },
-    rotateCW: (state, index) => {
+    rotateCW: (state, { payload: index }) => {
+      console.log({ state, index });
       return state.map((tile, i) => {
         if (i === index) {
           return rotateTile(tile, CLOCKWISE);

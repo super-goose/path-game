@@ -43,6 +43,32 @@
   }
 }
 
+.rotatingCW {
+  animation: rotatingCW 0.5s 1;
+}
+
+@keyframes rotatingCW {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(90deg);
+  }
+}
+
+.rotatingCCW {
+  animation: rotatingCCW 0.5s 1;
+}
+
+@keyframes rotatingCCW {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(-90deg);
+  }
+}
+
 .tileSpace {
   display: flex;
   flex-direction: column;

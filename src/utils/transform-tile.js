@@ -1,12 +1,12 @@
-import { generateTileFromArray } from './generate-tile';
+import { generateTileFromArray } from "./generate-tile";
 
-export const CLOCKWISE = 'clockwise';
-export const COUNTERCLOCKWISE = 'counterclockwise';
+export const CLOCKWISE = "clockwise";
+export const COUNTERCLOCKWISE = "counterclockwise";
 
 const rotate = (arr, rotation) => {
   const modifier = {
-    [COUNTERCLOCKWISE]: -2,
-    [CLOCKWISE]: 2,
+    [COUNTERCLOCKWISE]: 2,
+    [CLOCKWISE]: -2,
   }[rotation];
 
   return arr.map((i) => (i + modifier + 8) % 8);

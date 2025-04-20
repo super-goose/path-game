@@ -1,25 +1,12 @@
 "use client";
 
 import React, { useCallback, useMemo, useState } from "react";
-import { Tile } from "../tile";
 import { ControlButton } from "./control-button";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./next-tile.module.css";
-import { TILE_SIZE } from "@/utils/canvas-drawing";
 import { rotateCCW, rotateCW } from "@/state/slices/hand";
 import { getHand } from "@/state/reducer/hand";
-
-const TileSpace = ({ tile, index, playTile }) => (
-  <div className={`tile-space ${styles.tileSpace}`}>
-    <div
-      style={{ width: TILE_SIZE, height: TILE_SIZE, backgroundColor: "white" }}
-    >
-      <svg viewBox="0, 0, 100, 100">
-        <Tile definition={tile} onClick={() => playTile(index)} />
-      </svg>
-    </div>
-  </div>
-);
+import { TileSpace } from "./tile-space";
 
 const calculateDisplayIndex = (index, handLength, i) => {
   return (handLength + index + 1 + i) % handLength;
@@ -29,16 +16,26 @@ export const NextUp = ({ sprites, playTile }) => {
   const [index, setIndex] = useState(0);
   const [slidingUp, setSlidingUp] = useState(false);
   const [slidingDown, setSlidingDown] = useState(false);
+  const [rotatingCW, setRotatingCW] = useState(false);
+  const [rotatingCCW, setRotatingCCW] = useState(false);
   const hand = useSelector(getHand);
   const dispatch = useDispatch();
-  const rotateCurrentCCW = useCallback(
-    () => dispatch(rotateCCW(index)),
-    [dispatch, index]
-  );
-  const rotateCurrentCW = useCallback(
-    () => dispatch(rotateCW(index)),
-    [dispatch, index]
-  );
+
+  const rotateCurrentCCW = useCallback(() => {
+    setRotatingCCW(true);
+    setTimeout(() => {
+      dispatch(rotateCCW(index));
+      setRotatingCCW(false);
+    }, 500);
+  }, [dispatch, index]);
+
+  const rotateCurrentCW = useCallback(() => {
+    setRotatingCW(true);
+    setTimeout(() => {
+      dispatch(rotateCW(index));
+      setRotatingCW(false);
+    }, 500);
+  }, [dispatch, index]);
 
   const slideUp = useCallback(() => {
     if (slidingUp || slidingDown) {
@@ -47,7 +44,7 @@ export const NextUp = ({ sprites, playTile }) => {
     setSlidingUp(true);
     setTimeout(() => {
       setSlidingUp(false);
-      setIndex((index + 1) % hand.length);
+      setIndex((index + hand.length + 1) % hand.length);
     }, 500);
   }, [hand.length, index, slidingDown, slidingUp]);
 
@@ -58,7 +55,7 @@ export const NextUp = ({ sprites, playTile }) => {
     setSlidingDown(true);
     setTimeout(() => {
       setSlidingDown(false);
-      setIndex((index - 1) % hand.length);
+      setIndex((index + hand.length - 1) % hand.length);
     }, 500);
   }, [hand.length, index, slidingDown, slidingUp]);
 
@@ -89,6 +86,8 @@ export const NextUp = ({ sprites, playTile }) => {
             <TileSpace
               key={`tilespace-${tile.order.join("-")}-${i}`}
               index={i}
+              isRotatingCCW={rotatingCCW && i === 2}
+              isRotatingCW={rotatingCW && i === 2}
               sprites={sprites}
               tile={tile}
             />
