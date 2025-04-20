@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useCallback, useMemo, useState } from "react";
 import { Tile } from "../tile";
 import { ControlButton } from "./control-button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./next-tile.module.css";
 import { TILE_SIZE } from "@/utils/canvas-drawing";
 import { rotateCCW, rotateCW } from "@/state/slices/hand";
@@ -25,9 +27,18 @@ const calculateDisplayIndex = (index, handLength, i) => {
 
 export const NextUp = ({ sprites, playTile }) => {
   const [index, setIndex] = useState(0);
-  const hand = useSelector(getHand);
   const [slidingUp, setSlidingUp] = useState(false);
   const [slidingDown, setSlidingDown] = useState(false);
+  const hand = useSelector(getHand);
+  const dispatch = useDispatch();
+  const rotateCurrentCCW = useCallback(
+    () => dispatch(rotateCCW(index)),
+    [dispatch, index]
+  );
+  const rotateCurrentCW = useCallback(
+    () => dispatch(rotateCW(index)),
+    [dispatch, index]
+  );
 
   const slideUp = useCallback(() => {
     if (slidingUp || slidingDown) {
@@ -63,7 +74,7 @@ export const NextUp = ({ sprites, playTile }) => {
   return (
     <section className={`container ${styles.nextTileContainer}`}>
       <ControlButton direction="prev" onClick={slideUp} />
-      <ControlButton direction="ccw" onClick={() => rotateCCW(index)} />
+      <ControlButton direction="ccw" onClick={rotateCurrentCCW} />
       <div className={styles.nextTileTileContainer}>
         <div
           className={
@@ -80,14 +91,11 @@ export const NextUp = ({ sprites, playTile }) => {
               index={i}
               sprites={sprites}
               tile={tile}
-              rotateCCW={rotateCCW}
-              rotateCW={rotateCW}
-              // playTile={playTileq}
             />
           ))}
         </div>
       </div>
-      <ControlButton direction="cw" onClick={() => rotateCCW(index)} />
+      <ControlButton direction="cw" onClick={rotateCurrentCW} />
       <ControlButton direction="next" onClick={slideDown} />
     </section>
   );
