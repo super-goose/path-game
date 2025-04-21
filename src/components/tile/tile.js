@@ -69,15 +69,17 @@ export const Tile = ({ x, y, definition }) => {
   const translate =
     isNaN(x) || isNaN(y)
       ? ""
-      : `scale(.2, .2) translate(${x * 100}, ${y * 100})`;
+      : `scale(.33333, .33333) translate(${x * 100}, ${y * 100})`;
   return (
     <g fill="none" transform={translate}>
       {layers.map((layer) => (
         <Path
           key={`${x},${y}->${layer.name}->${layer.rotate}->${layer.flip}`}
           d={pathsByTileOpenings(layer.name, layer.flip, layer.rotate)}
-          light="blue"
-          dark="darkblue"
+          light="#008fdd"
+          dark="#006094"
+          // light="blue"
+          // dark="darkblue"
           rotate={layer.rotate}
           flip={layer.flip}
           filled={layer.filled}

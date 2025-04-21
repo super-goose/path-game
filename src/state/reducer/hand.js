@@ -44,7 +44,3 @@
 // export const removeTileFromDeck = (index) => ({ type: REMOVE_TILE, index });
 // export const rotateCCW = (index) => ({ type: ROTATE_CCW, index });
 // export const rotateCW = (index) => ({ type: ROTATE_CW, index });
-
-// // selectors
-// export const getHand = ({ hand }) => hand;
-// export const getTileAt = ({ hand }, index) => hand[index];

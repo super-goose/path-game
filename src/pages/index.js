@@ -8,6 +8,7 @@ import { Board } from "@/components/board";
 import { NextUp } from "@/components/next-tile";
 import { Provider } from "react-redux";
 import store from "@/state/store";
+import NoSSR from "@/components/no-ssr/no-ssr";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <Header score={666} />
-        <Board />
-        <NextUp />
-      </main>
+      <NoSSR>
+        <main className={`${styles.main} ${inter.className}`}>
+          <Header score={666} />
+          <Board />
+          <NextUp />
+        </main>
+      </NoSSR>
     </Provider>
   );
 }

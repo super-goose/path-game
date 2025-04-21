@@ -38,19 +38,11 @@ export const handSlice = createSlice({
   },
 });
 
+// reducers
 export const { removeTileFromHand, rotateCCW, rotateCW } = handSlice.actions;
 
+// selectors
+export const getHand = ({ hand }) => hand;
+// export const getTileAt = ({ hand }, index) => hand[index];
+
 export default handSlice.reducer;
-
-// // Can still subscribe to the store
-// store.subscribe(() => console.log(store.getState()))
-
-// // Still pass action objects to `dispatch`, but they're created for us
-// store.dispatch(incremented())
-// // {value: 1}
-// store.dispatch(incremented())
-// // {value: 2}
-// store.dispatch(decremented())
-// // {value: 1}
-
-// ----

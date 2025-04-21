@@ -4,8 +4,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { ControlButton } from "./control-button";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./next-tile.module.css";
-import { rotateCCW, rotateCW } from "@/state/slices/hand";
-import { getHand } from "@/state/reducer/hand";
+import { getHand, rotateCCW, rotateCW } from "@/state/slices/hand";
 import { TileSpace } from "./tile-space";
 
 const calculateDisplayIndex = (index, handLength, i) => {
