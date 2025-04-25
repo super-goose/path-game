@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./next-tile.module.css";
 import { getHand, rotateCCW, rotateCW } from "@/state/slices/hand";
 import { TileSpace } from "./tile-space";
+import { placeTileOnBoard } from "@/state/slices/board";
 
 const calculateDisplayIndex = (index, handLength, i) => {
   return (handLength + index + 1 + i) % handLength;
@@ -91,6 +92,10 @@ export const NextUp = ({ sprites, playTile }) => {
               isRotatingCW={rotatingCW && i === 2}
               sprites={sprites}
               tile={tile}
+              playTile={() => {
+                console.log("play tile:", index);
+                // dispatch(placeTileOnBoard(hand[index]))
+              }}
             />
           ))}
         </div>

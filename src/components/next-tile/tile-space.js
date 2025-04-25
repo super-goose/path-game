@@ -14,6 +14,7 @@ export const TileSpace = ({
   isRotatingCW,
 }) => (
   <div
+    onClick={() => playTile(index)}
     className={`tile-space ${styles.tileSpace} ${
       isRotatingCW ? styles.rotatingCW : isRotatingCCW ? styles.rotatingCCW : ""
     }`}
@@ -22,7 +23,7 @@ export const TileSpace = ({
       style={{ width: TILE_SIZE, height: TILE_SIZE, backgroundColor: "white" }}
     >
       <svg viewBox="0, 0, 100, 100">
-        <Tile definition={tile} onClick={() => playTile(index)} />
+        <Tile definition={tile} />
       </svg>
     </div>
   </div>
