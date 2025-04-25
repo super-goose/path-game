@@ -1,4 +1,4 @@
-import { CLOCKWISE, COUNTERCLOCKWISE, rotateTile } from './transform-tile';
+import { CLOCKWISE, COUNTERCLOCKWISE, rotateTile } from "./transform-tile";
 
 const first = {
   0: { out: 2, connected: false },
@@ -36,51 +36,11 @@ const third = {
   order: [1, 6, 7, 4, 3, 5, 0, 2],
 };
 
-test('it generates an object', () => {
+test("it generates an object", () => {
   expect(rotateTile(first)).toBeInstanceOf(Object);
 });
 
-test('it rotates a tile 90 degrees', () => {
-  const firstTarget = {
-    0: { out: 5, connected: false },
-    1: { out: 6, connected: false },
-    2: { out: 4, connected: false },
-    3: { out: 7, connected: false },
-    4: { out: 2, connected: false },
-    5: { out: 0, connected: false },
-    6: { out: 1, connected: false },
-    7: { out: 3, connected: false },
-    order: [4, 2, 3, 7, 5, 0, 6, 1], // alter this
-  };
-  const secondTarget = {
-    0: { out: 5, connected: false },
-    1: { out: 4, connected: false },
-    2: { out: 7, connected: false },
-    3: { out: 6, connected: false },
-    4: { out: 1, connected: false },
-    5: { out: 0, connected: false },
-    6: { out: 3, connected: false },
-    7: { out: 2, connected: false },
-    order: [6, 3, 5, 0, 7, 2, 4, 1],
-  };
-  const thirdTarget = {
-    0: { out: 3, connected: false },
-    1: { out: 6, connected: false },
-    2: { out: 4, connected: false },
-    3: { out: 0, connected: false },
-    4: { out: 2, connected: false },
-    5: { out: 7, connected: false },
-    6: { out: 1, connected: false },
-    7: { out: 5, connected: false },
-    order: [3, 0, 1, 6, 5, 7, 2, 4],
-  };
-
-  expect(rotateTile(first, CLOCKWISE)).toEqual(firstTarget);
-  expect(rotateTile(second, CLOCKWISE)).toEqual(secondTarget);
-  expect(rotateTile(third, CLOCKWISE)).toEqual(thirdTarget);
-});
-
-test('it rotates a tile -90 degrees', () => {
+test("it rotates a tile 90 degrees", () => {
   const firstTarget = {
     0: { out: 6, connected: false },
     1: { out: 4, connected: false },
@@ -113,6 +73,46 @@ test('it rotates a tile -90 degrees', () => {
     6: { out: 0, connected: false },
     7: { out: 4, connected: false },
     order: [7, 4, 5, 2, 1, 3, 6, 0],
+  };
+
+  expect(rotateTile(first, CLOCKWISE)).toEqual(firstTarget);
+  expect(rotateTile(second, CLOCKWISE)).toEqual(secondTarget);
+  expect(rotateTile(third, CLOCKWISE)).toEqual(thirdTarget);
+});
+
+test("it rotates a tile -90 degrees", () => {
+  const firstTarget = {
+    0: { out: 5, connected: false },
+    1: { out: 6, connected: false },
+    2: { out: 4, connected: false },
+    3: { out: 7, connected: false },
+    4: { out: 2, connected: false },
+    5: { out: 0, connected: false },
+    6: { out: 1, connected: false },
+    7: { out: 3, connected: false },
+    order: [4, 2, 3, 7, 5, 0, 6, 1], // alter this
+  };
+  const secondTarget = {
+    0: { out: 5, connected: false },
+    1: { out: 4, connected: false },
+    2: { out: 7, connected: false },
+    3: { out: 6, connected: false },
+    4: { out: 1, connected: false },
+    5: { out: 0, connected: false },
+    6: { out: 3, connected: false },
+    7: { out: 2, connected: false },
+    order: [6, 3, 5, 0, 7, 2, 4, 1],
+  };
+  const thirdTarget = {
+    0: { out: 3, connected: false },
+    1: { out: 6, connected: false },
+    2: { out: 4, connected: false },
+    3: { out: 0, connected: false },
+    4: { out: 2, connected: false },
+    5: { out: 7, connected: false },
+    6: { out: 1, connected: false },
+    7: { out: 5, connected: false },
+    order: [3, 0, 1, 6, 5, 7, 2, 4],
   };
 
   expect(rotateTile(first, COUNTERCLOCKWISE)).toEqual(firstTarget);

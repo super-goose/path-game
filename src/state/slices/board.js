@@ -32,47 +32,45 @@ export const boardSlice = createSlice({
   name: "board",
   initialState: INITIAL_BOARD,
   reducers: {
-    placeTileOnBoard: (state, { payload: tile }) => {
+    placeTileOnBoard: (state, { payload: tileRef }) => {
+      const tile = JSON.parse(JSON.stringify(tileRef));
       console.log("let us place tiles on boards");
-      let { entry, next, board } = state;
-      board[next] = tile;
-      for (const coord in board) {
-        for (const node in board[coord]) {
+      state.board[state.next] = tile;
+      for (const coord in state.board) {
+        for (const node in state.board[coord]) {
           if (node === "order") {
             continue;
           }
-          board[coord][node] = {
-            ...board[coord][node],
-            connected: false,
-          };
+          state.board[coord][node].connected = false;
         }
       }
 
-      let cursor = destringifyEntry(entry);
+      let cursor = destringifyEntry(state.entry);
       let coord = "0,0";
       let i = 0;
-      while (i++ < 1000 && board[coord]) {
+      while (i++ < 1000 && state.board[coord]) {
         // get corresponding "in" location on next tile
         const tileEntry = entries[cursor.position];
         // get coordinates of next tile
+        // get "out" location of next tile
+        const { out } = state.board[coord][tileEntry];
+
         const { x, y } = getNextCoord(
-          board[coord],
+          state.board[coord],
           tileEntry,
           keyToCoords(coord)
         );
-
-        // get "out" location of next tile
-        const { out } = board[coord][tileEntry];
         // set that path to true in tile
-        board[coord][tileEntry].connected = true;
-        board[coord][out].connected = true;
+        state.board[coord][tileEntry].connected = true;
+        state.board[coord][out].connected = true;
 
         // update cursor
         cursor = { x, y, position: out };
         coord = coordsToKey({ x, y });
       }
 
-      next = coord;
+      state.next = coord;
+      // entry = stringifyEntry(cursor);
     },
   },
 });

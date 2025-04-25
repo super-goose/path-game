@@ -6,7 +6,7 @@ const nextConfig = {
     // In Next.js 15, you might need to use these options
     // to further control SSR behavior
     ppr: false,
-    serverActions: false,
+    // serverActions: false,
   },
 };
 
