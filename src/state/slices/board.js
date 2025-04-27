@@ -20,10 +20,8 @@ const destringifyEntry = (str) => {
 };
 
 const INITIAL_BOARD = {
-  dimensions: [3, 3],
   entry: "0,-1:0",
   board: {},
-  // path: [],
   score: 0,
   next: "0,0",
 };
@@ -51,7 +49,7 @@ export const boardSlice = createSlice({
       while (i++ < 1000 && state.board[coord]) {
         // get corresponding "in" location on next tile
         const tileEntry = entries[cursor.position];
-        // get coordinates of next tile
+
         // get "out" location of next tile
         const { out } = state.board[coord][tileEntry];
 
@@ -70,7 +68,6 @@ export const boardSlice = createSlice({
       }
 
       state.next = coord;
-      // entry = stringifyEntry(cursor);
     },
   },
 });
