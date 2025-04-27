@@ -1,4 +1,5 @@
 import { addPath, entries, getNextCoord, getNextEntry } from "@/utils/add-path";
+import { pathsPerTile } from "@/utils/paths-per-tile";
 import {
   CLOCKWISE,
   COUNTERCLOCKWISE,
@@ -23,6 +24,7 @@ const INITIAL_BOARD = {
   entry: "0,-1:0",
   board: {},
   score: 0,
+  distance: 0,
   next: "0,0",
 };
 
@@ -67,6 +69,19 @@ export const boardSlice = createSlice({
         coord = coordsToKey({ x, y });
       }
 
+      // don't let other people see this logic...
+      let newDistance = 0;
+      const newScore = Object.keys(state.board).reduce(
+        (cumScore, coordinate) => {
+          const currentTile = state.board[coordinate];
+          const pathsOnTile = pathsPerTile(currentTile);
+          newDistance += pathsOnTile;
+          return cumScore + [0, 1, 3, 6, 10][pathsOnTile];
+        },
+        0
+      );
+
+      state.score = newScore;
       state.next = coord;
     },
   },
@@ -76,6 +91,7 @@ export const { placeTileOnBoard } = boardSlice.actions;
 
 export const getBoard = ({ board }) => board.board;
 export const getNext = ({ board }) => board.next;
+export const getScore = ({ board }) => board.score;
 
 export default boardSlice.reducer;
 

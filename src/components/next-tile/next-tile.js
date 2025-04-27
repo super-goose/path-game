@@ -102,7 +102,6 @@ export const NextUp = ({}) => {
               index={i}
               isRotatingCCW={rotatingCCW && i === 2}
               isRotatingCW={rotatingCW && i === 2}
-              sprites={sprites}
               tile={tile}
               playTile={playTile}
             />

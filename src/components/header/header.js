@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { changeSize, getOtherSize } from "../../utils/canvas-drawing";
 import style from "./header.module.css";
+import { useSelector } from "react-redux";
+import { getScore } from "@/state/slices/board";
 
-export const Header = ({ score }) => {
+export const Header = ({}) => {
   const [menuExpanded, setMenuExpanded] = useState(false);
+  const score = useSelector(getScore);
 
   return (
     <header className={style.headerContainer}>
