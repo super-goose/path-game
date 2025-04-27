@@ -27,16 +27,8 @@ const Path = ({ d, dark, light, filled, flip }) => {
   const idFill = useId();
   const idColorFill = useId();
 
-  const TILE_SIZE = 100;
-
-  const scale = flip ? "scale(1)" : "";
   return (
-    <g
-    // transform={[
-    //   scale,
-    //   `rotate(${rotate}, ${TILE_SIZE / 2}, ${TILE_SIZE / 2})`,
-    // ]}
-    >
+    <g>
       <path id={idShadow} d={d} />
       <use
         href={`#${idShadow}`}
@@ -64,12 +56,12 @@ const Path = ({ d, dark, light, filled, flip }) => {
   );
 };
 
-export const Tile = ({ x, y, definition }) => {
+export const Tile = ({ x, y, scale, definition }) => {
   const layers = buildLayers(definition);
   const translate =
-    isNaN(x) || isNaN(y)
+    isNaN(x) || isNaN(y) || isNaN(scale)
       ? ""
-      : `scale(.33333, .33333) translate(${x * 100}, ${y * 100})`;
+      : `scale(${scale}, ${scale}) translate(${x * 100}, ${y * 100})`;
   return (
     <g fill="none" transform={translate}>
       {layers.map((layer) => (

@@ -74,6 +74,9 @@ export const boardSlice = createSlice({
 
 export const { placeTileOnBoard } = boardSlice.actions;
 
+export const getBoard = ({ board }) => board.board;
+export const getNext = ({ board }) => board.next;
+
 export default boardSlice.reducer;
 
 // // Can still subscribe to the store

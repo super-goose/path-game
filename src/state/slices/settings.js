@@ -1,6 +1,3 @@
-import { addPath, entries, getNextCoord, getNextEntry } from "@/utils/add-path";
-import { coordsToKey, keyToCoords } from "@/utils/transformers";
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_SETTINGS = {
@@ -21,6 +18,9 @@ export const settingsSlice = createSlice({
     },
   },
 });
+
+export const getScale = ({ settings }) =>
+  1 / Math.min(settings.dimensions[0], settings.dimensions[1]);
 
 export const { changeDimensions } = settingsSlice.actions;
 
