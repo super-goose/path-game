@@ -38,7 +38,12 @@ const Path = ({ d, dark, light, filled, flip }) => {
         strokeOpacity={0.5}
       />
       <path id={idPath} d={d} />
-      <use href={`#${idPath}`} fill="none" stroke={light} strokeWidth={15} />
+      <use
+        href={`#${idPath}`}
+        fill="none"
+        stroke={"#3b7e95"}
+        strokeWidth={15}
+      />
       <path id={idFill} d={d} />
       <use href={`#${idFill}`} fill="none" stroke={"#222"} strokeWidth={10} />
       {filled && (
@@ -47,7 +52,7 @@ const Path = ({ d, dark, light, filled, flip }) => {
           <use
             href={`#${idColorFill}`}
             fill="none"
-            stroke={light}
+            stroke={"#91ba9d"}
             strokeWidth={9}
           />
         </>
