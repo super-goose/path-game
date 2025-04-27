@@ -10,14 +10,16 @@ export const Header = ({}) => {
 
   return (
     <header className={style.headerContainer}>
-      <div className={[style.element, style.instruction]}>Make a long path</div>
-      <div className={[style.element, style.score]}>
+      <div className={[style.headerElement, style.instruction].join(" ")}>
+        Make a long path
+      </div>
+      <div className={[style.headerElement, style.score].join(" ")}>
         <span>score: </span>
-        <span>{score}</span>
+        <span style={{ marginLeft: ".5rem" }}>{score}</span>
       </div>
       <div>
         <div
-          className={[style.element, style.menuButton]}
+          className={[style.headerElement, style.menuButton].join(" ")}
           onClick={() => setMenuExpanded(!menuExpanded)}
         >
           <div className={[style.hamburger]} />

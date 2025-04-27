@@ -8,24 +8,21 @@
   justify-content: space-around;
 }
 
-.headerContainer .element {
-  background-color: #eef;
-  color: #223;
-  display: flex;
-  border-radius: 1em;
+.headerElement {
   padding: 0.5em;
   display: flex;
   align-items: center;
 }
 
 .instruction {
-  width: 45vw;
+  flex-grow: 1;
+  padding-left: 1.5rem;
 }
 
 .score {
   width: 24vw;
   text-align: left;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .menuButton {

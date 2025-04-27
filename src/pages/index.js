@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
       <NoSSR>
         <main className={`${styles.main} ${inter.className}`}>
-          <Header score={666} />
+          <Header />
           <Board />
           <NextUp />
         </main>
