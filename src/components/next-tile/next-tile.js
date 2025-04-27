@@ -4,7 +4,12 @@ import React, { useCallback, useMemo, useState } from "react";
 import { ControlButton } from "./control-button";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./next-tile.module.css";
-import { getHand, rotateCCW, rotateCW } from "@/state/slices/hand";
+import {
+  getHand,
+  removeTileFromHand,
+  rotateCCW,
+  rotateCW,
+} from "@/state/slices/hand";
 import { TileSpace } from "./tile-space";
 import { placeTileOnBoard } from "@/state/slices/board";
 
@@ -94,7 +99,10 @@ export const NextUp = ({ sprites, playTile }) => {
               tile={tile}
               playTile={() => {
                 console.log("play tile:", index);
-                // dispatch(placeTileOnBoard(hand[index]))
+                const tileToPlay = JSON.parse(JSON.stringify(hand[index]));
+
+                dispatch(removeTileFromHand(tileToPlay));
+                dispatch(placeTileOnBoard(tileToPlay));
               }}
             />
           ))}
