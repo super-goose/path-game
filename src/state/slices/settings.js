@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_SETTINGS = {
-  dimensions: [3, 3],
+  dimensions: [4, 4],
   gameOver: false,
 };
 

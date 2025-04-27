@@ -17,7 +17,7 @@ const calculateDisplayIndex = (index, handLength, i) => {
   return (handLength + index + 1 + i) % handLength;
 };
 
-export const NextUp = ({ sprites, playTile }) => {
+export const NextUp = ({}) => {
   const [index, setIndex] = useState(0);
   const [slidingUp, setSlidingUp] = useState(false);
   const [slidingDown, setSlidingDown] = useState(false);
@@ -66,6 +66,13 @@ export const NextUp = ({ sprites, playTile }) => {
     }, 500);
   }, [hand.length, index, slidingDown, slidingUp]);
 
+  const playTile = useCallback(() => {
+    const tileToPlay = JSON.parse(JSON.stringify(hand[index]));
+
+    dispatch(removeTileFromHand(tileToPlay));
+    dispatch(placeTileOnBoard(tileToPlay));
+  }, [dispatch, hand, index]);
+
   const displayHandCarousel = useMemo(() => {
     const displayHand = [];
     for (let i = 0, l = 5; i < l; i++) {
@@ -97,13 +104,7 @@ export const NextUp = ({ sprites, playTile }) => {
               isRotatingCW={rotatingCW && i === 2}
               sprites={sprites}
               tile={tile}
-              playTile={() => {
-                console.log("play tile:", index);
-                const tileToPlay = JSON.parse(JSON.stringify(hand[index]));
-
-                dispatch(removeTileFromHand(tileToPlay));
-                dispatch(placeTileOnBoard(tileToPlay));
-              }}
+              playTile={playTile}
             />
           ))}
         </div>
