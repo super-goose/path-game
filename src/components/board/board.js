@@ -29,7 +29,7 @@ export const Board = () => {
         <svg viewBox="0, 0, 100, 100">
           {boardDisplay.map(({ tile, x, y }) => (
             <Tile
-              key={`${x},${y}:${'tile.order.join("-")'}`}
+              key={`${x},${y}:${tile.order.join("-")}`}
               scale={scale}
               x={x}
               y={y}

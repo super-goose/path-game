@@ -20,7 +20,11 @@ export const TileSpace = ({
     }`}
   >
     <div
-      style={{ width: TILE_SIZE, height: TILE_SIZE, backgroundColor: "white" }}
+      style={{
+        width: TILE_SIZE,
+        height: TILE_SIZE,
+        backgroundColor: "#d1a97f",
+      }}
     >
       <svg viewBox="0, 0, 100, 100">
         <Tile definition={tile} />

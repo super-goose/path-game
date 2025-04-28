@@ -63,10 +63,12 @@ const Path = ({ d, dark, light, filled, flip }) => {
 
 export const Tile = ({ x, y, scale, definition }) => {
   const layers = buildLayers(definition);
-  const translate =
-    isNaN(x) || isNaN(y) || isNaN(scale)
-      ? ""
-      : `scale(${scale}, ${scale}) translate(${x * 100}, ${y * 100})`;
+  const isBoardTile = !isNaN(x) && !isNaN(y) && !isNaN(scale);
+
+  const translate = isBoardTile
+    ? `scale(${scale}, ${scale}) translate(${x * 100}, ${y * 100})`
+    : "";
+
   return (
     <g fill="none" transform={translate}>
       {layers.map((layer) => (
@@ -75,11 +77,9 @@ export const Tile = ({ x, y, scale, definition }) => {
           d={pathsByTileOpenings(layer.name, layer.flip, layer.rotate)}
           light="#008fdd"
           dark="#006094"
-          // light="blue"
-          // dark="darkblue"
           rotate={layer.rotate}
           flip={layer.flip}
-          filled={layer.filled}
+          filled={layer.filled || !isBoardTile}
         />
       ))}
     </g>
