@@ -1,14 +1,28 @@
-import React, { useState } from "react";
-import { changeSize, getOtherSize } from "../../utils/canvas-drawing";
-import style from "./header.module.css";
-import { useSelector } from "react-redux";
+import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getScore } from "@/state/slices/board";
-import { getDimensions } from "@/state/slices/settings";
+import { changeDimensions, getDimensions } from "@/state/slices/settings";
+import style from "./header.module.css";
 
 export const Header = ({}) => {
   const [menuExpanded, setMenuExpanded] = useState(false);
+  const dispatch = useDispatch();
+
   const score = useSelector(getScore);
   const size = useSelector(getDimensions);
+
+  const changeSize = useCallback(() => {
+    const newSize = {};
+    if (size[0] === 4) {
+      newSize.width = 8;
+      newSize.height = 8;
+    } else {
+      newSize.width = 4;
+      newSize.height = 4;
+    }
+
+    dispatch(changeDimensions(newSize));
+  }, [dispatch, size]);
 
   return (
     <header className={style.headerContainer}>
@@ -38,8 +52,8 @@ export const Header = ({}) => {
             </div>
             <div
               className={[style.menuItem]}
-              onClick={() => changeSize()}
-            >{`change to ${getOtherSize()}`}</div>
+              onClick={changeSize}
+            >{`change to ${size[0] === 4 ? "8x8" : "4x4"}`}</div>
           </div>
         )}
       </div>

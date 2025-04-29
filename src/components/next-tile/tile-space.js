@@ -2,9 +2,10 @@
 
 import React from "react";
 import { Tile } from "../tile";
-import { TILE_SIZE } from "@/utils/canvas-drawing";
 
 import styles from "./next-tile.module.css";
+
+const TILE_SIZE = 64; // move this elsewhere??
 
 export const TileSpace = ({
   tile,
