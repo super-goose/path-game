@@ -1,16 +1,17 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import style from "./board.module.css";
 import { Tile } from "../tile";
 import { getBoard, getNext } from "@/state/slices/board";
 import { useSelector } from "react-redux";
 import { keyToCoords } from "@/utils/transformers";
-import { getScale } from "@/state/slices/settings";
+import { getDimensions, getScale } from "@/state/slices/settings";
 
 export const Board = () => {
   const board = useSelector(getBoard);
   const next = useSelector(getNext);
   const scale = useSelector(getScale);
+  const size = useSelector(getDimensions);
 
   const nextCoords = useMemo(() => {
     return keyToCoords(next);
@@ -22,6 +23,13 @@ export const Board = () => {
       return { tile: board[coord], x: Number(x), y: Number(y) };
     });
   }, [board]);
+
+  useEffect(() => {
+    const { x, y } = nextCoords;
+    if (x < 0 || x >= size[0] || y < 0 || y > size[1]) {
+      console.log(nextCoords);
+    }
+  }, [nextCoords, size]);
 
   return (
     <section>

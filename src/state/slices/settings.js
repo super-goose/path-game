@@ -21,6 +21,7 @@ export const settingsSlice = createSlice({
 
 export const getScale = ({ settings }) =>
   1 / Math.min(settings.dimensions[0], settings.dimensions[1]);
+
 export const getDimensions = ({ settings }) => settings.dimensions;
 
 export const { changeDimensions } = settingsSlice.actions;
