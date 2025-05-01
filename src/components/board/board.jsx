@@ -26,8 +26,8 @@ export const Board = () => {
 
   useEffect(() => {
     const { x, y } = nextCoords;
-    if (x < 0 || x >= size[0] || y < 0 || y > size[1]) {
-      console.log(nextCoords);
+    if (x < 0 || x >= size[0] || y < 0 || y >= size[1]) {
+      console.log("these are off the board:", nextCoords);
     }
   }, [nextCoords, size]);
 
