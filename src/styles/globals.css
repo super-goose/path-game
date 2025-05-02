@@ -109,3 +109,8 @@ a {
 body {
   margin: 0;
 }
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+}

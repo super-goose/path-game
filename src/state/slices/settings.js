@@ -24,6 +24,6 @@ export const getScale = ({ settings }) =>
 
 export const getDimensions = ({ settings }) => settings.dimensions;
 
-export const { changeDimensions } = settingsSlice.actions;
+export const { changeDimensions, setGameOver } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
