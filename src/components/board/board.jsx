@@ -1,21 +1,14 @@
 "use client";
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import style from "./board.module.css";
 import { Tile } from "../tile";
-import { getBoard, getNext } from "@/state/slices/board";
+import { getBoard } from "@/state/slices/board";
 import { useSelector } from "react-redux";
-import { keyToCoords } from "@/utils/transformers";
-import { getDimensions, getScale } from "@/state/slices/settings";
+import { getScale } from "@/state/slices/settings";
 
-export const Board = () => {
+export const Board = ({ nextCoords }) => {
   const board = useSelector(getBoard);
-  const next = useSelector(getNext);
   const scale = useSelector(getScale);
-  const size = useSelector(getDimensions);
-
-  const nextCoords = useMemo(() => {
-    return keyToCoords(next);
-  }, [next]);
 
   const boardDisplay = useMemo(() => {
     return Object.keys(board).map((coord) => {
@@ -23,13 +16,6 @@ export const Board = () => {
       return { tile: board[coord], x: Number(x), y: Number(y) };
     });
   }, [board]);
-
-  useEffect(() => {
-    const { x, y } = nextCoords;
-    if (x < 0 || x >= size[0] || y < 0 || y >= size[1]) {
-      console.log("these are off the board:", nextCoords);
-    }
-  }, [nextCoords, size]);
 
   return (
     <section>
