@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import { useSelector } from "react-redux";
 
 import { getNext } from "@/state/slices/board";
@@ -14,7 +14,7 @@ import { NextUp } from "@/components/next-tile";
 import styles from "@/styles/home.module.css";
 import { Modal } from "../modal";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const Game = () => {
   const next = useSelector(getNext);
@@ -33,11 +33,11 @@ export const Game = () => {
 
   return (
     <>
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={styles.main}>
         <Header />
         <Board nextCoords={nextCoords} />
         <NextUp />
-        <Modal />
+        {/* <Modal /> */}
       </main>
     </>
   );
