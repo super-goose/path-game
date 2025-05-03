@@ -1,10 +1,10 @@
 "use client";
 import React, { useMemo } from "react";
-import style from "./board.module.css";
+import { useSelector } from "react-redux";
 import { Tile } from "../tile";
 import { getBoard } from "@/state/slices/board";
-import { useSelector } from "react-redux";
 import { getScale } from "@/state/slices/settings";
+import style from "./board.module.css";
 
 export const Board = ({ nextCoords }) => {
   const board = useSelector(getBoard);
@@ -19,7 +19,7 @@ export const Board = ({ nextCoords }) => {
 
   return (
     <section>
-      <div className={style.board}>
+      <div className={style.board} style={{ "--light-background": "#d1a97f" }}>
         <svg viewBox="0, 0, 100, 100">
           {boardDisplay.map(({ tile, x, y }) => (
             <Tile

@@ -1,7 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getScore } from "@/state/slices/board";
-import { changeDimensions, getDimensions } from "@/state/slices/settings";
+import {
+  changeDimensions,
+  getDimensions,
+  setGameOver,
+} from "@/state/slices/settings";
 import style from "./header.module.css";
 
 export const Header = ({}) => {
@@ -54,6 +58,24 @@ export const Header = ({}) => {
               className={[style.menuItem]}
               onClick={changeSize}
             >{`change to ${size[0] === 4 ? "8x8" : "4x4"}`}</div>
+            <div
+              className={[style.menuItem]}
+              onClick={() => {
+                dispatch(setGameOver(true));
+                setMenuExpanded(false);
+              }}
+            >
+              game over state on
+            </div>
+            <div
+              className={[style.menuItem]}
+              onClick={() => {
+                dispatch(setGameOver(false));
+                setMenuExpanded(false);
+              }}
+            >
+              game over state off
+            </div>
           </div>
         )}
       </div>
