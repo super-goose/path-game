@@ -17,6 +17,7 @@ export const Board = ({ nextCoords }) => {
     });
   }, [board]);
 
+  const scalePercent = scale * 100;
   return (
     <section>
       <div className={style.board} style={{ "--light-background": "#d1a97f" }}>
@@ -31,13 +32,22 @@ export const Board = ({ nextCoords }) => {
             />
           ))}
           <rect
-            x={nextCoords.x * scale * 100}
-            y={nextCoords.y * scale * 100}
-            width={scale * 100 /*TILE_SIZE*/}
-            height={scale * 100 /*TILE_SIZE*/}
+            x={nextCoords.x * scalePercent}
+            y={nextCoords.y * scalePercent}
+            width={scalePercent /*TILE_SIZE*/}
+            height={scalePercent /*TILE_SIZE*/}
             rx={4}
             stroke="black"
             fill="none"
+          />
+          <rect
+            x={15 * scale - 1}
+            y={-4 * scale}
+            width={20 * scale + 2}
+            height={8 * scale}
+            rx={1}
+            stroke="black"
+            fill="#91ba9d"
           />
         </svg>
       </div>

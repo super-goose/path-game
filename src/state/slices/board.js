@@ -84,10 +84,17 @@ export const boardSlice = createSlice({
       state.score = newScore;
       state.next = coord;
     },
+    resetBoard: (state) => {
+      state.entry = INITIAL_BOARD.entry;
+      state.board = INITIAL_BOARD.board;
+      state.score = INITIAL_BOARD.score;
+      state.distance = INITIAL_BOARD.distance;
+      state.next = INITIAL_BOARD.next;
+    },
   },
 });
 
-export const { placeTileOnBoard } = boardSlice.actions;
+export const { placeTileOnBoard, resetBoard } = boardSlice.actions;
 
 export const getBoard = ({ board }) => board.board;
 export const getNext = ({ board }) => board.next;

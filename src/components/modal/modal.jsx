@@ -27,7 +27,7 @@ export const Modal = () => {
           <button
             className={style.modalButton}
             onClick={() => {
-              dispatch({ action: { type: "newgame" } });
+              dispatch({ type: "newgame" });
             }}
           >
             go again
