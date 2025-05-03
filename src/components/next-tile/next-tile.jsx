@@ -69,7 +69,7 @@ export const NextUp = ({}) => {
   const playTile = useCallback(() => {
     const tileToPlay = JSON.parse(JSON.stringify(hand[index]));
 
-    dispatch(removeTileFromHand(tileToPlay));
+    dispatch(removeTileFromHand(index));
     dispatch(placeTileOnBoard(tileToPlay));
   }, [dispatch, hand, index]);
 
