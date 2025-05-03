@@ -67,15 +67,6 @@ export const Header = ({}) => {
             >
               game over state on
             </div>
-            <div
-              className={[style.menuItem]}
-              onClick={() => {
-                dispatch(setGameOver(false));
-                setMenuExpanded(false);
-              }}
-            >
-              game over state off
-            </div>
           </div>
         )}
       </div>

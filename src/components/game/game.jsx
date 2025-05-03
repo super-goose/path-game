@@ -33,8 +33,11 @@ export const Game = () => {
   useEffect(() => {
     const { x, y } = nextCoords;
     if (x < 0 || x >= size[0] || y < 0 || y >= size[1]) {
-      dispatch(setGameOver(true));
-      console.log("these are off the board:", nextCoords);
+      const t = setTimeout(() => {
+        dispatch(setGameOver(true));
+      }, 1000);
+
+      return () => clearTimeout(t);
     }
   }, [nextCoords, size]);
 

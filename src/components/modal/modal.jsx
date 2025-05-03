@@ -1,11 +1,15 @@
 import React from "react";
-import style from "./modal.module.css";
-import { setGameOver } from "@/state/slices/settings";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
+
+import { getScore } from "@/state/slices/board";
+import { setGameOver } from "@/state/slices/settings";
+
+import style from "./modal.module.css";
 
 export const Modal = () => {
   const dispatch = useDispatch();
+  const score = useSelector(getScore);
 
   return (
     <div className={style.modalOverlay}>
@@ -17,19 +21,19 @@ export const Modal = () => {
           Game Over
         </div>
         <div className={classNames([style.modalContent, style.modalSection])}>
-          your score is: 666
+          your score is: {score}
         </div>
-        <div>
+        <div className={classNames([style.modalFooter, style.modalSection])}>
           <button
+            className={style.modalButton}
             onClick={() => {
-              dispatch({ action: "newgame" });
+              dispatch({ action: { type: "newgame" } });
             }}
           >
             go again
           </button>
-        </div>
-        <div>
           <button
+            className={style.modalButton}
             onClick={() => {
               dispatch(setGameOver(false));
             }}
@@ -37,7 +41,6 @@ export const Modal = () => {
             dismiss
           </button>
         </div>
-        <div>empty space</div>
       </div>
     </div>
   );
