@@ -67,3 +67,13 @@
   background: #90ba9d;
   color: #222;
 }
+
+@media (orientation: landscape) {
+  .modalContainer {
+    width: 60vw;
+  }
+
+  .modalSection {
+    width: 63vw;
+  }
+}

@@ -15,7 +15,6 @@ export const handSlice = createSlice({
   reducers: {
     removeTileFromHand: (state, action) => {
       state.splice(action.payload, 1, generateTile());
-      // state.push(generateTile());
     },
     rotateCCW: (state, { payload: index }) => {
       return state.map((tile, i) => {

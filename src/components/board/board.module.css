@@ -13,3 +13,10 @@
   height: 100vw;
   width: 100%;
 }
+
+@media (orientation: landscape) {
+  .board svg {
+    height: calc(100vh - 7rem);
+    width: calc(100vh - 7rem);
+  }
+}

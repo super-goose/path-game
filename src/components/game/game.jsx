@@ -14,11 +14,9 @@ import {
 import { Header } from "@/components/header";
 import { Board } from "@/components/board";
 import { NextUp } from "@/components/next-tile";
-
-import styles from "@/styles/home.module.css";
 import { Modal } from "../modal";
 
-// const inter = Inter({ subsets: ["latin"] });
+import styles from "@/styles/home.module.css";
 
 export const Game = () => {
   const dispatch = useDispatch();
@@ -45,8 +43,10 @@ export const Game = () => {
     <>
       <main className={styles.main}>
         <Header />
-        <Board nextCoords={nextCoords} />
-        <NextUp />
+        <div className={styles.gameBoardContainer}>
+          <Board nextCoords={nextCoords} />
+          <NextUp />
+        </div>
         {gameOver && <Modal />}
       </main>
     </>
