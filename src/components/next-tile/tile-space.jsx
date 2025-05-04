@@ -16,15 +16,14 @@ export const TileSpace = ({
 }) => (
   <div
     onClick={() => playTile(index)}
-    className={`tile-space ${styles.tileSpace} ${
+    className={`${styles.tileSpace} ${
       isRotatingCW ? styles.rotatingCW : isRotatingCCW ? styles.rotatingCCW : ""
     }`}
   >
     <div
+      className={styles.tileSvgContainer}
       style={{
-        width: TILE_SIZE,
-        height: TILE_SIZE,
-        backgroundColor: "#d1a97f",
+        "--light-background": "#d1a97f",
       }}
     >
       <svg viewBox="0, 0, 100, 100">

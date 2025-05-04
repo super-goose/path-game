@@ -17,6 +17,12 @@
   overflow-y: hidden;
 }
 
+@media (orientation: landscape) {
+  .nextTileTileContainer {
+    height: fit-content;
+  }
+}
+
 .slidingUp {
   animation: slideUp 0.5s 1;
 }
@@ -74,8 +80,34 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.tileSpace:first-of-type {
+  margin-top: 0;
 }
 
 .tileSpace:last-of-type {
   margin-bottom: 0;
+}
+
+.tileSvgContainer {
+  background-color: var(--light-background);
+  width: 64px;
+  height: 64px;
+}
+
+@media (orientation: landscape) {
+  .tileSvgContainer {
+    width: 128px;
+    height: 128px;
+  }
+
+  .tileSpace:first-of-type {
+    display: none;
+  }
+
+  .tileSpace:last-of-type {
+    display: none;
+  }
 }
