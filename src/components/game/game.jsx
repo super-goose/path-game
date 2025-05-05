@@ -37,7 +37,7 @@ export const Game = () => {
 
       return () => clearTimeout(t);
     }
-  }, [nextCoords, size]);
+  }, [dispatch, nextCoords, size]);
 
   return (
     <>
