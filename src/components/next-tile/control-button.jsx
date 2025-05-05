@@ -4,8 +4,8 @@ import style from "./control-button.module.css";
 const SYMBOL = {
   cw: "↻",
   ccw: "↺",
-  prev: "⬆",
-  next: "⬇",
+  prev: "↑",
+  next: "↓",
 };
 
 export const ControlButton = ({ direction, onClick }) => (

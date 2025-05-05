@@ -1,7 +1,6 @@
 .nextTileContainer {
   display: flex;
   flex-direction: row;
-  width: 80%;
   height: 150px;
   justify-content: space-between;
   align-items: center;
