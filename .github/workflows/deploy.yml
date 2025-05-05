@@ -1,0 +1,50 @@
+name: Export projects to HTML5 and deploy to S3 bucket
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GODOT_VERSION: 4.1.1
+
+jobs:
+  export-html5:
+    name: Export projects to HTML5 and deploy to S3
+    runs-on: ubuntu-latest
+    # container:
+    #   image: barichello/godot-ci:4.1.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # - name: Setup
+      #   run: |
+      #     apt-get update && apt-get install -y python3 python3-pip python3-setuptools
+      #     pip3 install --upgrade pip
+      #     pip3 --no-cache-dir install --upgrade awscli
+      #     aws --version
+      #     mkdir -v -p ~/.local/share/godot/export_templates
+      #     mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      # - name: Web Build
+      #   run: |
+      #     mkdir -v -p build/web
+      #     pwd && ls
+      #     echo " vvv vvv vvv vvv in home vvv vvv vvv vvv "
+      #     ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+      #     echo " ^^^ ^^^ ^^^ ^^^ in home ^^^ ^^^ ^^^ ^^^ "
+      #     godot --headless --verbose --export-debug "Web" ./build/web/index.html
+      #     cp .htaccess ./build/web/.htaccess
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy static site to S3 bucket
+        run: |
+          aws s3 sync . s3://${{secrets.AWS_BUCKET_NAME}}/simple-sweet/path --delete
