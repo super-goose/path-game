@@ -18,6 +18,10 @@
 }
 
 @media (orientation: landscape) {
+  .nextTileContainer {
+    height: 100%;
+  }
+
   .nextTileTileContainer {
     height: fit-content;
   }
@@ -36,6 +40,15 @@
   }
 }
 
+@keyframes slideUpLandscape {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-128px - 1rem));
+  }
+}
+
 .slidingDown {
   animation: slideDown 0.5s 1;
 }
@@ -46,6 +59,25 @@
   }
   100% {
     transform: translateY(calc(64px + 1rem));
+  }
+}
+
+@keyframes slideDownLandscape {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(128px + 1rem));
+  }
+}
+
+@media (orientation: landscape) {
+  .slidingUp {
+    animation: slideUpLandscape 0.5s 1;
+  }
+
+  .slidingDown {
+    animation: slideDownLandscape 0.5s 1;
   }
 }
 
@@ -101,6 +133,11 @@
   .tileSvgContainer {
     width: 128px;
     height: 128px;
+    border-radius: 12px;
+  }
+
+  .focusedTile {
+    border: 3px solid var(--focus-outline);
   }
 
   .tileSpace:first-of-type {

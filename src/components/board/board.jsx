@@ -36,7 +36,7 @@ export const Board = ({ nextCoords }) => {
             y={nextCoords.y * scalePercent}
             width={scalePercent /*TILE_SIZE*/}
             height={scalePercent /*TILE_SIZE*/}
-            rx={4}
+            rx={16 / (1 / scale)}
             stroke="black"
             fill="none"
           />

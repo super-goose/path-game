@@ -29,20 +29,26 @@ export const NextUp = ({}) => {
   const rotateCurrentCCW = useCallback(() => {
     // TODO: you need this link here to prevent the flash:
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event
+    if (rotatingCCW) {
+      return;
+    }
     setRotatingCCW(true);
     setTimeout(() => {
       dispatch(rotateCCW(index));
       setRotatingCCW(false);
     }, 500);
-  }, [dispatch, index]);
+  }, [dispatch, index, rotatingCCW]);
 
   const rotateCurrentCW = useCallback(() => {
+    if (rotatingCW) {
+      return;
+    }
     setRotatingCW(true);
     setTimeout(() => {
       dispatch(rotateCW(index));
       setRotatingCW(false);
     }, 500);
-  }, [dispatch, index]);
+  }, [dispatch, index, rotatingCW]);
 
   const slideUp = useCallback(() => {
     if (slidingUp || slidingDown) {
@@ -100,6 +106,7 @@ export const NextUp = ({}) => {
             <TileSpace
               key={`tilespace-${tile.order.join("-")}-${i}`}
               index={i}
+              isFocused={i === 2}
               isRotatingCCW={rotatingCCW && i === 2}
               isRotatingCW={rotatingCW && i === 2}
               tile={tile}

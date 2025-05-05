@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import { Tile } from "../tile";
 
 import styles from "./next-tile.module.css";
-
-const TILE_SIZE = 64; // move this elsewhere??
+import classNames from "classnames";
 
 export const TileSpace = ({
   tile,
@@ -13,22 +12,40 @@ export const TileSpace = ({
   playTile,
   isRotatingCCW,
   isRotatingCW,
-}) => (
-  <div
-    onClick={() => playTile(index)}
-    className={`${styles.tileSpace} ${
-      isRotatingCW ? styles.rotatingCW : isRotatingCCW ? styles.rotatingCCW : ""
-    }`}
-  >
+  isFocused,
+}) => {
+  const onClickTile = useCallback(() => {
+    if (!isFocused) {
+      return;
+    }
+    playTile(index);
+  }, [isFocused, playTile, index]);
+
+  return (
     <div
-      className={styles.tileSvgContainer}
-      style={{
-        "--light-background": "#d1a97f",
-      }}
+      onClick={onClickTile}
+      className={`${styles.tileSpace} ${
+        isRotatingCW
+          ? styles.rotatingCW
+          : isRotatingCCW
+          ? styles.rotatingCCW
+          : ""
+      }`}
     >
-      <svg viewBox="0, 0, 100, 100">
-        <Tile definition={tile} />
-      </svg>
+      <div
+        className={classNames(
+          styles.tileSvgContainer,
+          isFocused ? styles.focusedTile : undefined
+        )}
+        style={{
+          "--light-background": "#d1a97f",
+          "--focus-outline": "#bd785b",
+        }}
+      >
+        <svg viewBox="0, 0, 100, 100">
+          <Tile definition={tile} />
+        </svg>
+      </div>
     </div>
-  </div>
-);
+  );
+};
