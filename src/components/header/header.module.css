@@ -39,6 +39,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .hamburger {
@@ -52,9 +53,14 @@
 .menuContainer {
   z-index: 2;
   position: absolute;
-  background-color: #335;
+  background-color: #3c3c63;
   width: 50vw;
   right: 0;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background-color: #3b7e94;
 }
 
 .menuItem {

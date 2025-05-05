@@ -38,6 +38,7 @@ export const Board = ({ nextCoords }) => {
             height={scalePercent /*TILE_SIZE*/}
             rx={16 / (1 / scale)}
             stroke="black"
+            strokeWidth={4 * scale}
             fill="none"
           />
           <rect
@@ -47,6 +48,7 @@ export const Board = ({ nextCoords }) => {
             height={8 * scale}
             rx={1}
             stroke="black"
+            strokeWidth={4 * scale}
             fill="#91ba9d"
           />
         </svg>

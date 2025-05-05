@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getScore } from "@/state/slices/board";
 import {
@@ -15,18 +15,35 @@ export const Header = ({}) => {
   const score = useSelector(getScore);
   const size = useSelector(getDimensions);
 
-  const changeSize = useCallback(() => {
-    const newSize = {};
-    if (size[0] === 4) {
-      newSize.width = 8;
-      newSize.height = 8;
-    } else {
-      newSize.width = 4;
-      newSize.height = 4;
-    }
+  const changeSize = useCallback(
+    (dimension) => {
+      const newSize = {
+        width: dimension,
+        height: dimension,
+      };
 
-    dispatch(changeDimensions(newSize));
-  }, [dispatch, size]);
+      dispatch(changeDimensions(newSize));
+      setMenuExpanded(false);
+    },
+    [dispatch]
+  );
+
+  const menuOptions = useMemo(() => {
+    return [
+      { display: "new game", onClick: () => dispatch({ type: "newgame" }) },
+      {
+        display: "game over state on",
+        onClick: () => {
+          dispatch(setGameOver(true));
+          setMenuExpanded(false);
+        },
+      },
+      { display: "change to 4x4", onClick: () => changeSize(4) },
+      { display: "change to 5x5", onClick: () => changeSize(5) },
+      { display: "change to 8x8", onClick: () => changeSize(8) },
+      { display: "change to 9x9", onClick: () => changeSize(9) },
+    ];
+  }, [changeSize, dispatch]);
 
   return (
     <header className={style.headerContainer}>
@@ -48,25 +65,15 @@ export const Header = ({}) => {
         </div>
         {menuExpanded && (
           <div className={[style.menuContainer]}>
-            <div
-              className={[style.menuItem]}
-              onClick={() => window.location.reload()}
-            >
-              new game
-            </div>
-            <div
-              className={[style.menuItem]}
-              onClick={changeSize}
-            >{`change to ${size[0] === 4 ? "8x8" : "4x4"}`}</div>
-            <div
-              className={[style.menuItem]}
-              onClick={() => {
-                dispatch(setGameOver(true));
-                setMenuExpanded(false);
-              }}
-            >
-              game over state on
-            </div>
+            {menuOptions.map(({ display, onClick }) => (
+              <div
+                key={`menu-item-${display}`}
+                className={[style.menuItem]}
+                onClick={onClick}
+              >
+                {display}
+              </div>
+            ))}
           </div>
         )}
       </div>
