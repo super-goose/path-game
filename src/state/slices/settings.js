@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const INITIAL_SETTINGS = {
   dimensions: [4, 4],
   gameOver: false,
+  colorScheme: "sandy",
 };
 
 export const settingsSlice = createSlice({
