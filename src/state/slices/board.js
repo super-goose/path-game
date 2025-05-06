@@ -21,13 +21,13 @@ const destringifyEntry = (str) => {
 };
 
 const INITIAL_BOARD = {
-  // entry: "0,-1:0",
-  entry: "5,0:6",
+  entry: "0,-1:0",
+  // entry: "5,0:6",
   board: {},
   score: 0,
   distance: 0,
-  // next: "0,0",
-  next: "4,0",
+  next: "0,0",
+  // next: "4,0",
 };
 
 export const boardSlice = createSlice({
