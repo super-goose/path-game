@@ -21,11 +21,13 @@ const destringifyEntry = (str) => {
 };
 
 const INITIAL_BOARD = {
-  entry: "0,-1:0",
+  // entry: "0,-1:0",
+  entry: "5,0:6",
   board: {},
   score: 0,
   distance: 0,
-  next: "0,0",
+  // next: "0,0",
+  next: "4,0",
 };
 
 export const boardSlice = createSlice({
@@ -46,7 +48,7 @@ export const boardSlice = createSlice({
       }
 
       let cursor = destringifyEntry(state.entry);
-      let coord = "0,0";
+      let coord = next;
       let i = 0;
       while (i++ < 1000 && state.board[coord]) {
         // get corresponding "in" location on next tile

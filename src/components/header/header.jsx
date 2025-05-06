@@ -30,7 +30,13 @@ export const Header = ({}) => {
 
   const menuOptions = useMemo(() => {
     return [
-      { display: "new game", onClick: () => dispatch({ type: "newgame" }) },
+      {
+        display: "new game",
+        onClick: () => {
+          dispatch({ type: "newgame" });
+          setMenuExpanded(false);
+        },
+      },
       {
         display: "game over state on",
         onClick: () => {

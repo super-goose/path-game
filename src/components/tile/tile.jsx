@@ -52,7 +52,8 @@ const Path = ({ d, dark, light, filled, flip }) => {
           <use
             href={`#${idColorFill}`}
             fill="none"
-            stroke={"#91ba9d"}
+            // stroke={"#91ba9d"}
+            stroke={"#3C3C63"}
             strokeWidth={9}
           />
         </>
