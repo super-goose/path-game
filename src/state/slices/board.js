@@ -21,7 +21,7 @@ const destringifyEntry = (str) => {
 };
 
 const INITIAL_BOARD = {
-  entry: "0,-1:0",
+  entry: ["0,-1:0"],
   // entry: "5,0:6",
   board: {},
   score: 0,
@@ -46,29 +46,31 @@ export const boardSlice = createSlice({
           state.board[coord][node].connected = false;
         }
       }
+      let coord;
+      for (const entry of state.entry) {
+        let cursor = destringifyEntry(entry);
+        coord = "0,0";
+        let i = 0;
+        while (i++ < 1000 && state.board[coord]) {
+          // get corresponding "in" location on next tile
+          const tileEntry = entries[cursor.position];
 
-      let cursor = destringifyEntry(state.entry);
-      let coord = "0,0";
-      let i = 0;
-      while (i++ < 1000 && state.board[coord]) {
-        // get corresponding "in" location on next tile
-        const tileEntry = entries[cursor.position];
+          // get "out" location of next tile
+          const { out } = state.board[coord][tileEntry];
 
-        // get "out" location of next tile
-        const { out } = state.board[coord][tileEntry];
+          const { x, y } = getNextCoord(
+            state.board[coord],
+            tileEntry,
+            keyToCoords(coord)
+          );
+          // set that path to true in tile
+          state.board[coord][tileEntry].connected = true;
+          state.board[coord][out].connected = true;
 
-        const { x, y } = getNextCoord(
-          state.board[coord],
-          tileEntry,
-          keyToCoords(coord)
-        );
-        // set that path to true in tile
-        state.board[coord][tileEntry].connected = true;
-        state.board[coord][out].connected = true;
-
-        // update cursor
-        cursor = { x, y, position: out };
-        coord = coordsToKey({ x, y });
+          // update cursor
+          cursor = { x, y, position: out };
+          coord = coordsToKey({ x, y });
+        }
       }
 
       // don't let other people see this logic...
