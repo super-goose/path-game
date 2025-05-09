@@ -48,7 +48,7 @@ export const boardSlice = createSlice({
       }
 
       let cursor = destringifyEntry(state.entry);
-      let coord = next;
+      let coord = "0,0";
       let i = 0;
       while (i++ < 1000 && state.board[coord]) {
         // get corresponding "in" location on next tile
