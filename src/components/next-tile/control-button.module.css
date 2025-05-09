@@ -6,3 +6,9 @@
   border: 2px solid #ccc;
   height: 5rem;
 }
+
+@media (orientation: landscape) {
+  .controlButton {
+    width: 4rem;
+  }
+}

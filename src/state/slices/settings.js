@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const LS_DIMENSIONS_KEY = "initial-state-dimensions";
 const INITIAL_SETTINGS = {
-  dimensions: [4, 4],
+  dimensions: global?.window?.localStorage
+    ? JSON.parse(global?.window?.localStorage?.getItem(LS_DIMENSIONS_KEY))
+    : [4, 4],
   gameOver: false,
   colorScheme: "sandy",
 };
@@ -11,7 +14,9 @@ export const settingsSlice = createSlice({
   initialState: INITIAL_SETTINGS,
   reducers: {
     changeDimensions: (state, { payload }) => {
-      state.dimensions = [payload.width, payload.height];
+      const newDimensions = [payload.width, payload.height];
+      localStorage.setItem(LS_DIMENSIONS_KEY, JSON.stringify(newDimensions));
+      state.dimensions = newDimensions;
       state.gameOver = false;
     },
     setGameOver: (state, { payload }) => {
