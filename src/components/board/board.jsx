@@ -2,13 +2,14 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Tile } from "../tile";
-import { getBoard } from "@/state/slices/board";
+import { getBoard, getEntries } from "@/state/slices/board";
 import { getScale } from "@/state/slices/settings";
 import style from "./board.module.css";
 
 export const Board = ({ nextCoords }) => {
   const board = useSelector(getBoard);
   const scale = useSelector(getScale);
+  const entries = useSelector(getEntries);
 
   const boardDisplay = useMemo(() => {
     return Object.keys(board).map((coord) => {
@@ -41,16 +42,19 @@ export const Board = ({ nextCoords }) => {
             strokeWidth={4 * scale}
             fill="none"
           />
-          <rect
-            x={15 * scale - 1}
-            y={-4 * scale}
-            width={20 * scale + 2}
-            height={8 * scale}
-            rx={1}
-            stroke="black"
-            strokeWidth={4 * scale}
-            fill="#91ba9d"
-          />
+          {entries.map((entry) => (
+            <rect
+              key={`entry-${entry}`}
+              x={15 * scale - 1}
+              y={-4 * scale}
+              width={20 * scale + 2}
+              height={8 * scale}
+              rx={1}
+              stroke="black"
+              strokeWidth={4 * scale}
+              fill="#91ba9d"
+            />
+          ))}
         </svg>
       </div>
     </section>

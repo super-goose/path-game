@@ -103,6 +103,7 @@ export const { placeTileOnBoard, resetBoard } = boardSlice.actions;
 export const getBoard = ({ board }) => board.board;
 export const getNext = ({ board }) => board.next;
 export const getScore = ({ board }) => board.score;
+export const getEntries = ({ board }) => board.entry;
 
 export default boardSlice.reducer;
 
