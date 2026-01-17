@@ -61,7 +61,7 @@ export const boardSlice = createSlice({
           const { x, y } = getNextCoord(
             state.board[coord],
             tileEntry,
-            keyToCoords(coord)
+            keyToCoords(coord),
           );
           // set that path to true in tile
           state.board[coord][tileEntry].connected = true;
@@ -82,7 +82,7 @@ export const boardSlice = createSlice({
           newDistance += pathsOnTile;
           return cumScore + [0, 1, 3, 6, 10][pathsOnTile];
         },
-        0
+        0,
       );
 
       state.score = newScore;
@@ -104,6 +104,18 @@ export const getBoard = ({ board }) => board.board;
 export const getNext = ({ board }) => board.next;
 export const getScore = ({ board }) => board.score;
 export const getEntries = ({ board }) => board.entry;
+export const getDensity = ({ board }) => {
+  const coords = Object.keys(board.board);
+  if (coords.length === 0) {
+    return "no tiles";
+  }
+  const totalConnections = coords.reduce((acc, cur) => {
+    const currentTile = board.board[cur];
+    const pathsOnTile = pathsPerTile(currentTile);
+    return acc + pathsOnTile;
+  }, 0);
+  return (totalConnections / coords.length).toPrecision(2).replace(".00", "");
+};
 
 export default boardSlice.reducer;
 
