@@ -1,9 +1,63 @@
 import React from "react";
 import style from "./control-button.module.css";
 
+const ARC_PATH = "M 65,35 A 25,25 0,1,1 35,35";
+const ARROW_PATH = "M 33,35 L 36,34 L 35,37 Z";
+const ARROW_PATH_SHADOW = "M 30,35 L 36,34 L 35,40 Z";
+const RotateArrow = ({ direction }) => (
+  <svg
+    style={
+      direction === "CCW"
+        ? {
+            transform: "scaleX(-1)",
+          }
+        : {}
+    }
+    viewBox="0, 0, 100, 100"
+  >
+    <g>
+      <path
+        id={"idShadow"}
+        d={ARC_PATH}
+        fill="none"
+        strokeWidth={15}
+        stroke="#90ba9d"
+        strokeOpacity={1}
+      />
+      <path
+        id={"idShadow3"}
+        d={ARROW_PATH_SHADOW}
+        fill="none"
+        strokeWidth={20}
+        stroke="#90ba9d"
+        strokeOpacity={1}
+        transform="rotate(-15deg)"
+      />
+      <path
+        id={"idMain"}
+        d={ARC_PATH}
+        fill="none"
+        strokeWidth={10}
+        stroke="#d1a97f"
+        strokeOpacity={1}
+      />
+      <path
+        id={"idMain3"}
+        d={ARROW_PATH}
+        fill="none"
+        strokeWidth={15}
+        stroke="#d1a97f"
+        strokeOpacity={1}
+        transform="rotate(-15deg)"
+      />
+    </g>
+  </svg>
+);
+
 const SYMBOL = {
-  cw: "↻",
-  ccw: "↺",
+  // cw: "↻",
+  cw: <RotateArrow direction="CW" />,
+  ccw: <RotateArrow direction="CCW" />,
   prev: "↑",
   next: "↓",
 };

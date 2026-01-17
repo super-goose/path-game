@@ -23,6 +23,7 @@
 
   .nextTileTileContainer {
     height: fit-content;
+    overflow-x: hidden;
   }
 }
 
