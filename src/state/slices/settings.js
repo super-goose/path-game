@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getInitialDimensions = () => {
+  const unparsed = global?.window?.localStorage?.getItem(LS_DIMENSIONS_KEY);
+
+  if (unparsed) {
+    return JSON.parse(unparsed);
+  }
+  return [4, 4];
+};
+
 const LS_DIMENSIONS_KEY = "initial-state-dimensions";
 const INITIAL_SETTINGS = {
-  dimensions: global?.window?.localStorage
-    ? JSON.parse(global?.window?.localStorage?.getItem(LS_DIMENSIONS_KEY))
-    : [4, 4],
+  dimensions: getInitialDimensions(),
   gameOver: false,
   colorScheme: "sandy",
 };
