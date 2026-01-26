@@ -19,6 +19,7 @@
 @media (orientation: landscape) {
   .nextTileContainer {
     height: 100%;
+    flex-grow: 1;
   }
 
   .nextTileTileContainer {
