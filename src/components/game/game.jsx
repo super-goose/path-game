@@ -16,7 +16,7 @@ import { Board } from "@/components/board";
 import { NextUp } from "@/components/next-tile";
 import { Modal } from "../modal";
 
-import styles from "@/styles/home.module.css";
+import styles from "@/components/game/game.module.css";
 
 export const Game = () => {
   const dispatch = useDispatch();
