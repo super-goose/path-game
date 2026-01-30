@@ -13,6 +13,7 @@ const LS_DIMENSIONS_KEY = "initial-state-dimensions";
 const INITIAL_SETTINGS = {
   dimensions: getInitialDimensions(),
   gameOver: false,
+  tutorial: false,
   colorScheme: "sandy",
 };
 
@@ -29,6 +30,9 @@ export const settingsSlice = createSlice({
     setGameOver: (state, { payload }) => {
       state.gameOver = payload;
     },
+    setTutorial: (state, { payload }) => {
+      state.tutorial = payload;
+    },
   },
 });
 
@@ -37,7 +41,9 @@ export const getScale = ({ settings }) =>
 
 export const getDimensions = ({ settings }) => settings.dimensions;
 export const getGameOver = ({ settings }) => settings.gameOver;
+export const getTutorial = ({ settings }) => settings.tutorial;
 
-export const { changeDimensions, setGameOver } = settingsSlice.actions;
+export const { changeDimensions, setGameOver, setTutorial } =
+  settingsSlice.actions;
 
 export default settingsSlice.reducer;
