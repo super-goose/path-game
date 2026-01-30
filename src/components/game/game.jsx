@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
-// import { Inter } from "next/font/google";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getNext } from "@/state/slices/board";
@@ -41,7 +40,12 @@ export const Game = () => {
 
   return (
     <>
-      <main className={styles.main}>
+      <main
+        style={{
+          "--light-background": "#d1a97f",
+        }}
+        className={styles.main}
+      >
         <Header />
         <div className={styles.gameBoardContainer}>
           <Board nextCoords={nextCoords} />

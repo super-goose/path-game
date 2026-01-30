@@ -1,4 +1,4 @@
-.modalOverlay {
+/* .modalOverlay {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
 
   background-color: rgba(32, 32, 32, 0.7);
   backdrop-filter: blur(8px);
-}
+} */
 
 .modalContainer {
   display: flex;

@@ -21,7 +21,8 @@ const RotateArrow = ({ direction }) => (
         d={ARC_PATH}
         fill="none"
         strokeWidth={15}
-        stroke="#ccc"
+        // stroke="#ccc"
+        stroke="var(--light-background)"
         // stroke="#90ba9d"
         strokeOpacity={1}
       />
@@ -30,30 +31,12 @@ const RotateArrow = ({ direction }) => (
         d={ROTATE_ARROW_PATH_SHADOW}
         fill="none"
         strokeWidth={20}
-        stroke="#ccc"
+        // stroke="#ccc"
+        stroke="var(--light-background)"
         // stroke="#90ba9d"
         strokeOpacity={1}
         transform="rotate(-15deg)"
       />
-      {/* <path
-        id={"idMain"}
-        d={ARC_PATH}
-        fill="none"
-        strokeWidth={10}
-        stroke="#ccc"
-        // stroke="#d1a97f"
-        strokeOpacity={1}
-      />
-      <path
-        id={"idMain3"}
-        d={ROTATE_ARROW_PATH}
-        fill="none"
-        strokeWidth={15}
-        stroke="#ccc"
-        // stroke="#d1a97f"
-        strokeOpacity={1}
-        transform="rotate(-15deg)"
-      /> */}
     </g>
   </svg>
 );

@@ -28,17 +28,16 @@ export const TileSpace = ({
         isRotatingCW
           ? styles.rotatingCW
           : isRotatingCCW
-          ? styles.rotatingCCW
-          : ""
+            ? styles.rotatingCCW
+            : ""
       }`}
     >
       <div
         className={classNames(
           styles.tileSvgContainer,
-          isFocused ? styles.focusedTile : undefined
+          isFocused ? styles.focusedTile : undefined,
         )}
         style={{
-          "--light-background": "#d1a97f",
           "--focus-outline": "#bd785b",
         }}
       >

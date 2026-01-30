@@ -6,6 +6,7 @@ import { getDensity, getScore } from "@/state/slices/board";
 import { setGameOver } from "@/state/slices/settings";
 
 import style from "./modal.module.css";
+import { ModalOverlay } from "./wrappers";
 
 export const Modal = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,8 @@ export const Modal = () => {
   const density = useSelector(getDensity);
 
   return (
-    <div className={style.modalOverlay}>
-      <div
-        className={style.modalContainer}
-        style={{ "--light-background": "#d1a97f" }}
-      >
+    <ModalOverlay>
+      <div className={style.modalContainer}>
         <div className={classNames([style.modalHeader, style.modalSection])}>
           Game Over
         </div>
@@ -46,6 +44,6 @@ export const Modal = () => {
           </button>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 };

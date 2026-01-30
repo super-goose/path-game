@@ -21,7 +21,7 @@ export const Board = ({ nextCoords }) => {
   const scalePercent = scale * 100;
   return (
     <section>
-      <div className={style.board} style={{ "--light-background": "#d1a97f" }}>
+      <div className={style.board}>
         <svg viewBox="0, 0, 100, 100">
           {boardDisplay.map(({ tile, x, y }) => (
             <Tile
