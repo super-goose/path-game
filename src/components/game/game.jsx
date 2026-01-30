@@ -13,7 +13,7 @@ import {
 import { Header } from "@/components/header";
 import { Board } from "@/components/board";
 import { NextUp } from "@/components/next-tile";
-import { Modal } from "../modal";
+import { Modal } from "@/components/modal";
 
 import styles from "@/components/game/game.module.css";
 
@@ -38,6 +38,7 @@ export const Game = () => {
     }
   }, [dispatch, nextCoords, size]);
 
+  const showTutorial = true;
   return (
     <>
       <main
@@ -51,7 +52,7 @@ export const Game = () => {
           <Board nextCoords={nextCoords} />
           <NextUp />
         </div>
-        {gameOver && <Modal />}
+        <Modal gameOver={gameOver} showTutorial={showTutorial} />
       </main>
     </>
   );

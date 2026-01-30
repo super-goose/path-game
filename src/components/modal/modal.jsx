@@ -6,44 +6,17 @@ import { getDensity, getScore } from "@/state/slices/board";
 import { setGameOver } from "@/state/slices/settings";
 
 import style from "./modal.module.css";
-import { ModalOverlay } from "./wrappers";
+import { ModalContainer, ModalOverlay } from "./wrappers";
+import { GameOver } from "./game-over";
 
-export const Modal = () => {
-  const dispatch = useDispatch();
-  const score = useSelector(getScore);
-  const density = useSelector(getDensity);
+export const Modal = ({ gameOver, showTutorial }) => {
+  if (gameOver) {
+    return (
+      <ModalOverlay>
+        <GameOver />
+      </ModalOverlay>
+    );
+  }
 
-  return (
-    <ModalOverlay>
-      <div className={style.modalContainer}>
-        <div className={classNames([style.modalHeader, style.modalSection])}>
-          Game Over
-        </div>
-        <div className={classNames([style.modalContent, style.modalSection])}>
-          your score is: {score}
-        </div>
-        <div className={classNames([style.modalContent, style.modalSection])}>
-          board density is: {density}
-        </div>
-        <div className={classNames([style.modalFooter, style.modalSection])}>
-          <button
-            className={style.modalButton}
-            onClick={() => {
-              dispatch({ type: "newgame" });
-            }}
-          >
-            go again
-          </button>
-          <button
-            className={style.modalButton}
-            onClick={() => {
-              dispatch(setGameOver(false));
-            }}
-          >
-            dismiss
-          </button>
-        </div>
-      </div>
-    </ModalOverlay>
-  );
+  return null;
 };

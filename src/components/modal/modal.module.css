@@ -13,10 +13,9 @@
   backdrop-filter: blur(8px);
 } */
 
-.modalContainer {
+/* .modalContainer {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
 
   width: 80vw;
@@ -28,9 +27,9 @@
   box-shadow: 0px 0px 25px white;
 
   background-color: var(--light-background);
-}
+} */
 
-.modalSection {
+/* .modalSection {
   background: #3b7e94;
   padding: 1rem;
   border-radius: 0.75rem;
@@ -69,11 +68,11 @@
 }
 
 @media (orientation: landscape) {
-  .modalContainer {
+  /* .modalContainer {
     width: 60vw;
-  }
+  } * /
 
   .modalSection {
     width: 63vw;
   }
-}
+} */
