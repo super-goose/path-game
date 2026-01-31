@@ -1,14 +1,19 @@
 import React from "react";
-import { ModalOverlay } from "./wrappers";
 import { GameOver } from "./game-over";
+import { Tutorial } from "./tutorial";
+import { useSelector } from "react-redux";
+import { getGameOver, getTutorial } from "@/state/slices/settings";
 
-export const Modal = ({ gameOver, showTutorial }) => {
+export const Modal = () => {
+  const gameOver = useSelector(getGameOver);
+  const showTutorial = useSelector(getTutorial);
+
   if (gameOver) {
-    return (
-      <ModalOverlay>
-        <GameOver />
-      </ModalOverlay>
-    );
+    return <GameOver />;
+  }
+
+  if (showTutorial) {
+    return <Tutorial />;
   }
 
   return null;

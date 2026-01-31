@@ -13,7 +13,7 @@ const LS_DIMENSIONS_KEY = "initial-state-dimensions";
 const INITIAL_SETTINGS = {
   dimensions: getInitialDimensions(),
   gameOver: false,
-  tutorial: false,
+  tutorial: true,
   colorScheme: "sandy",
 };
 

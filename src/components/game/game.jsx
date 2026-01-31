@@ -5,11 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getNext } from "@/state/slices/board";
 import { keyToCoords } from "@/utils/transformers";
-import {
-  getDimensions,
-  getGameOver,
-  setGameOver,
-} from "@/state/slices/settings";
+import { getDimensions, setGameOver } from "@/state/slices/settings";
 import { Header } from "@/components/header";
 import { Board } from "@/components/board";
 import { NextUp } from "@/components/next-tile";
@@ -21,7 +17,6 @@ export const Game = () => {
   const dispatch = useDispatch();
   const next = useSelector(getNext);
   const size = useSelector(getDimensions);
-  const gameOver = useSelector(getGameOver);
 
   const nextCoords = useMemo(() => {
     return keyToCoords(next);
@@ -38,7 +33,6 @@ export const Game = () => {
     }
   }, [dispatch, nextCoords, size]);
 
-  const showTutorial = true;
   return (
     <>
       <main
@@ -52,7 +46,7 @@ export const Game = () => {
           <Board nextCoords={nextCoords} />
           <NextUp />
         </div>
-        <Modal gameOver={gameOver} showTutorial={showTutorial} />
+        <Modal />
       </main>
     </>
   );
