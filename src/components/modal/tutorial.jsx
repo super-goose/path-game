@@ -10,6 +10,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  PathColor,
 } from "./wrappers";
 
 export const Tutorial = () => {
@@ -22,7 +23,10 @@ export const Tutorial = () => {
     <ModalOverlay onClick={dismiss}>
       <ModalContainer>
         <ModalHeader>Make a long path</ModalHeader>
-        <ModalContent>put an explanation here</ModalContent>
+        <ModalContent>
+          Choose tiles to make the path (<PathColor>this color</PathColor>) grow
+          as long as you can. If it goes off the board, the game is over.
+        </ModalContent>
         <ModalFooter>
           <ModalButton onClick={dismiss}>dismiss</ModalButton>
         </ModalFooter>

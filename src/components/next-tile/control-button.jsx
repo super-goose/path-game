@@ -65,7 +65,7 @@ const SwitchArrow = ({ direction }) => (
         d={LINE_ARROW_PATH}
         fill="var(--light-background)"
         strokeWidth={1}
-        stroke="var(--whitish)"
+        stroke="var(--light-background)"
         strokeOpacity={1}
       />
     </g>

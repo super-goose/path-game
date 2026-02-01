@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
 
   border-radius: 1rem;
   border: 4px solid var(--blackish);
-  box-shadow: 0px 0px 25px white;
+  box-shadow: 0px 0px 25px var(--whitish);
 
   background-color: var(--light-background);
 
@@ -69,10 +69,15 @@ export const ModalFooter = styled(ModalSection)`
 
 export const ModalButton = styled.div`
   font-size: 1.5rem;
-  background: var(--accent-color);
   padding: 0.2rem 1rem;
   border-radius: 0.5rem;
   border: 4px solid var(--blackish);
   background: var(--highlight-color);
   color: var(--blackish);
+`;
+
+export const PathColor = styled.span`
+  color: var(--highlight-color);
+  font-weight: bold;
+  text-shadow: 2px 2px 2px var(--blackish);
 `;
