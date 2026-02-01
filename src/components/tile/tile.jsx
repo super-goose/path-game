@@ -20,7 +20,7 @@ light="#ff00ff" dark="#aa00aa"
 /> 
 */
 
-const Path = ({ d, dark, light, filled, flip }) => {
+const Path = ({ d, filled, flip }) => {
   const idShadow = useId();
   const idPath = useId();
   const idFill = useId();
@@ -28,33 +28,47 @@ const Path = ({ d, dark, light, filled, flip }) => {
 
   return (
     <g>
-      <path id={idShadow} d={d} />
-      <use
-        href={`#${idShadow}`}
+      <path
+        id={idShadow}
+        d={d}
         fill="none"
         strokeWidth={20}
-        stroke="#222"
+        stroke="var(--dark-background)"
         strokeOpacity={0.5}
       />
-      <path id={idPath} d={d} />
-      <use
-        href={`#${idPath}`}
+      {/* <use href={`#${idShadow}`} /> */}
+      <path
+        id={idPath}
+        d={d}
         fill="none"
-        stroke={"#3b7e95"}
+        stroke={"var(--accent-color)"}
         strokeWidth={15}
       />
-      <path id={idFill} d={d} />
-      <use href={`#${idFill}`} fill="none" stroke={"#222"} strokeWidth={10} />
+      {/* <use
+        href={`#${idPath}`}
+      /> */}
+      <path
+        id={idFill}
+        d={d}
+        fill="none"
+        stroke="var(--dark-background)"
+        strokeWidth={10}
+      />
+      {/* <use
+        href={`#${idFill}`}
+      /> */}
       {filled && (
         <>
-          <path id={idColorFill} d={d} />
-          <use
-            href={`#${idColorFill}`}
+          <path
+            id={idColorFill}
+            d={d}
             fill="none"
-            stroke={"#91ba9d"}
-            // stroke={"#3C3C63"}
+            stroke={"var(--highlight-color)"}
             strokeWidth={9}
           />
+          {/* <use
+            href={`#${idColorFill}`}
+          /> */}
         </>
       )}
     </g>
@@ -75,8 +89,6 @@ export const Tile = ({ x, y, scale, definition }) => {
         <Path
           key={`${x},${y}->${layer.name}->${layer.rotate}->${layer.flip}`}
           d={pathsByTileOpenings(layer.name, layer.flip, layer.rotate)}
-          light="#008fdd"
-          dark="#006094"
           rotate={layer.rotate}
           flip={layer.flip}
           filled={layer.filled || !isBoardTile}

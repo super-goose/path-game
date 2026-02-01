@@ -38,6 +38,9 @@ export const Game = () => {
       <main
         style={{
           "--light-background": "#d1a97f",
+          "--dark-background": "#222222",
+          "--highlight-color": "#90ba9d",
+          "--accent-color": "#3b7e94",
         }}
         className={styles.main}
       >

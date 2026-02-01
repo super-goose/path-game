@@ -61,7 +61,7 @@
 }
 
 .menuItem:hover {
-  background-color: #3b7e94;
+  background-color: var(--accent-color);
 }
 
 .menuItem {

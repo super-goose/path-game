@@ -1,0 +1,23 @@
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("/Comfortaa/Comfortaa-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Comfortaa", sans-serif;
+  margin: 0;
+}
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+}
