@@ -3,24 +3,16 @@ import { buildLayers } from "@/utils/build-layers";
 import { pathsByTileOpenings } from "@/utils/paths-by-tile-openings";
 
 /*
+PATH COMMANDS
 MoveTo: M, m
 LineTo: L, l, H, h, V, v
 Cubic Bézier Curve: C, c, S, s
 Quadratic Bézier Curve: Q, q, T, t
 Elliptical Arc Curve: A, a
 ClosePath: Z, z
-
-light="green" dark="darkgreen"
-light="red" dark="darkred"
-light="blue" dark="darkblue"
-light="yellow" dark="#aaaa00"
-light="#00ffff" dark="#00aaaa"
-light="#ffaa00" dark="#aa6600"
-light="#ff00ff" dark="#aa00aa"
-/> 
 */
 
-const Path = ({ d, filled, flip }) => {
+const Path = ({ d, filled }) => {
   const idShadow = useId();
   const idPath = useId();
   const idFill = useId();
@@ -33,7 +25,7 @@ const Path = ({ d, filled, flip }) => {
         d={d}
         fill="none"
         strokeWidth={20}
-        stroke="var(--dark-background)"
+        stroke="var(--blackish)"
         strokeOpacity={0.5}
       />
       {/* <use href={`#${idShadow}`} /> */}
@@ -51,7 +43,7 @@ const Path = ({ d, filled, flip }) => {
         id={idFill}
         d={d}
         fill="none"
-        stroke="var(--dark-background)"
+        stroke="var(--blackish)"
         strokeWidth={10}
       />
       {/* <use

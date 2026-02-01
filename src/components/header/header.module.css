@@ -46,15 +46,15 @@
 .hamburger {
   height: 0.3em;
   width: 1.2em;
-  background-color: #223;
-  border: 1px solid #eef;
+  background-color: var(--blackish);
+  border: 1px solid var(--whitish);
   border-radius: 0.2em;
 }
 
 .menuContainer {
   z-index: 2;
   position: absolute;
-  background-color: #3c3c63;
+  background-color: var(--accent-color);
   width: 75vw;
   right: 0;
   cursor: pointer;
@@ -67,7 +67,7 @@
 .menuItem {
   font-size: 1.5rem;
   height: 2em;
-  border: 1px solid #112;
+  border: 1px solid var(--blackish);
   display: flex;
   justify-content: center;
   align-items: center;

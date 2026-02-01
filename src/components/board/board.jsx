@@ -52,7 +52,7 @@ export const Board = ({ nextCoords }) => {
               rx={1}
               stroke="black"
               strokeWidth={4 * scale}
-              fill="#91ba9d"
+              fill="var(--highlight-color)"
             />
           ))}
         </svg>

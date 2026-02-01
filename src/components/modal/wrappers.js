@@ -25,7 +25,7 @@ export const ModalContainer = styled.div`
   padding: 1rem;
 
   border-radius: 1rem;
-  border: 4px solid #222;
+  border: 4px solid var(--blackish);
   box-shadow: 0px 0px 25px white;
 
   background-color: var(--light-background);
@@ -39,7 +39,7 @@ const ModalSection = styled.div`
   background: var(--accent-color);
   padding: 1rem;
   border-radius: 0.75rem;
-  border: 4px solid #222;
+  border: 4px solid var(--blackish);
   width: 85vw;
 
   @media (orientation: landscape) {
@@ -72,7 +72,7 @@ export const ModalButton = styled.div`
   background: var(--accent-color);
   padding: 0.2rem 1rem;
   border-radius: 0.5rem;
-  border: 4px solid #222;
+  border: 4px solid var(--blackish);
   background: var(--highlight-color);
-  color: #222;
+  color: var(--blackish);
 `;

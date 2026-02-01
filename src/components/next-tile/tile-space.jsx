@@ -37,10 +37,6 @@ export const TileSpace = ({
           styles.tileSvgContainer,
           isFocused ? styles.focusedTile : undefined,
         )}
-        style={{
-          // "--focus-outline": "#bd785b",
-          "--focus-outline": "#ff0000",
-        }}
       >
         <svg viewBox="0, 0, 100, 100">
           <Tile definition={tile} />

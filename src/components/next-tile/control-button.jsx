@@ -21,9 +21,7 @@ const RotateArrow = ({ direction }) => (
         d={ARC_PATH}
         fill="none"
         strokeWidth={15}
-        // stroke="#ccc"
         stroke="var(--light-background)"
-        // stroke="#90ba9d"
         strokeOpacity={1}
       />
       <path
@@ -31,9 +29,7 @@ const RotateArrow = ({ direction }) => (
         d={ROTATE_ARROW_PATH_SHADOW}
         fill="none"
         strokeWidth={20}
-        // stroke="#ccc"
         stroke="var(--light-background)"
-        // stroke="#90ba9d"
         strokeOpacity={1}
         transform="rotate(-15deg)"
       />
@@ -61,27 +57,22 @@ const SwitchArrow = ({ direction }) => (
         d={LINE_PATH}
         fill="none"
         strokeWidth={15}
-        stroke="#ccc"
-        // stroke="#90ba9d"
+        stroke="var(--light-background)"
         strokeOpacity={1}
       />
       <path
         id={"idShadow3"}
         d={LINE_ARROW_PATH}
-        // fill="none"
-        fill="#ccc"
+        fill="var(--light-background)"
         strokeWidth={1}
-        stroke="#ccc"
-        // stroke="#90ba9d"
+        stroke="var(--whitish)"
         strokeOpacity={1}
-        // transform="rotate(-15deg)"
       />
     </g>
   </svg>
 );
 
 const SYMBOL = {
-  // cw: "↻",
   cw: <RotateArrow direction="CW" />,
   ccw: <RotateArrow direction="CCW" />,
   prev: <SwitchArrow direction="UP" />,
