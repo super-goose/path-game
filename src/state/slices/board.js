@@ -1,10 +1,10 @@
 import { addPath, entries, getNextCoord, getNextEntry } from "@/utils/add-path";
 import { pathsPerTile } from "@/utils/paths-per-tile";
-import {
-  CLOCKWISE,
-  COUNTERCLOCKWISE,
-  rotateTile,
-} from "@/utils/transform-tile";
+// import {
+//   CLOCKWISE,
+//   COUNTERCLOCKWISE,
+//   rotateTile,
+// } from "@/utils/transform-tile";
 import { coordsToKey, keyToCoords } from "@/utils/transformers";
 
 import { createSlice } from "@reduxjs/toolkit";
@@ -21,12 +21,14 @@ const destringifyEntry = (str) => {
 };
 
 const INITIAL_BOARD = {
+  turnIndex: 0,
   entry: ["0,-1:0"],
   // entry: "5,0:6",
   board: {},
   score: 0,
   distance: 0,
-  next: "0,0",
+  next: ["0,0"],
+  startCoord: ["0,0"],
   // next: "4,0",
 };
 
@@ -37,7 +39,7 @@ export const boardSlice = createSlice({
     placeTileOnBoard: (state, { payload: tileRef }) => {
       const tile = JSON.parse(JSON.stringify(tileRef));
       console.log("let us place tiles on boards");
-      state.board[state.next] = tile;
+      state.board[state.next[state.turnIndex]] = tile;
       for (const coord in state.board) {
         for (const node in state.board[coord]) {
           if (node === "order") {
@@ -49,7 +51,7 @@ export const boardSlice = createSlice({
       let coord;
       for (const entry of state.entry) {
         let cursor = destringifyEntry(entry);
-        coord = "0,0";
+        coord = state.startCoord[state.turnIndex];
         let i = 0;
         while (i++ < 1000 && state.board[coord]) {
           // get corresponding "in" location on next tile
@@ -86,7 +88,7 @@ export const boardSlice = createSlice({
       );
 
       state.score = newScore;
-      state.next = coord;
+      state.next[state.turnIndex] = coord;
     },
     resetBoard: (state) => {
       state.entry = INITIAL_BOARD.entry;
@@ -101,9 +103,11 @@ export const boardSlice = createSlice({
 export const { placeTileOnBoard, resetBoard } = boardSlice.actions;
 
 export const getBoard = ({ board }) => board.board;
-export const getNext = ({ board }) => board.next;
-export const getScore = ({ board }) => board.score;
+export const getNext = ({ board }) => board.next[board.turnIndex];
+
 export const getEntries = ({ board }) => board.entry;
+
+export const getScore = ({ board }) => board.score;
 export const getDensity = ({ board }) => {
   const coords = Object.keys(board.board);
   if (coords.length === 0) {
