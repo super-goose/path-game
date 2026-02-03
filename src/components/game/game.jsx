@@ -3,9 +3,9 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getNext } from "@/state/slices/board";
+import { getDimensions, getNext } from "@/state/slices/board";
 import { keyToCoords } from "@/utils/transformers";
-import { getDimensions, setGameOver } from "@/state/slices/settings";
+import { setGameOver } from "@/state/slices/settings";
 import { Header } from "@/components/header";
 import { Board } from "@/components/board";
 import { NextUp } from "@/components/next-tile";

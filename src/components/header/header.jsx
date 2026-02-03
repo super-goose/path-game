@@ -1,11 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getScore } from "@/state/slices/board";
-import {
-  changeDimensions,
-  getDimensions,
-  setGameOver,
-} from "@/state/slices/settings";
+import { getScore, changeDimensions } from "@/state/slices/board";
+import { setGameOver } from "@/state/slices/settings";
 import style from "./header.module.css";
 
 export const Header = ({}) => {
@@ -13,7 +9,6 @@ export const Header = ({}) => {
   const dispatch = useDispatch();
 
   const score = useSelector(getScore);
-  const size = useSelector(getDimensions);
 
   const changeSize = useCallback(
     (dimension) => {
@@ -25,7 +20,7 @@ export const Header = ({}) => {
       dispatch(changeDimensions(newSize));
       setMenuExpanded(false);
     },
-    [dispatch]
+    [dispatch],
   );
 
   const menuOptions = useMemo(() => {

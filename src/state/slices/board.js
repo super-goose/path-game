@@ -1,15 +1,14 @@
-import { addPath, entries, getNextCoord, getNextEntry } from "@/utils/add-path";
+import { entries, getNextCoord } from "@/utils/add-path";
 import { pathsPerTile } from "@/utils/paths-per-tile";
-// import {
-//   CLOCKWISE,
-//   COUNTERCLOCKWISE,
-//   rotateTile,
-// } from "@/utils/transform-tile";
 import { coordsToKey, keyToCoords } from "@/utils/transformers";
+import { getLocalStorage, setLocalStorage } from "@/utils/local-storage";
 
 import { createSlice } from "@reduxjs/toolkit";
 
+const LS_DIMENSIONS_KEY = "initial-state-dimensions";
+
 const stringifyEntry = ({ x, y, position }) => `${x},${y}:${position}`;
+
 const destringifyEntry = (str) => {
   const [coordinates, position] = str.split(":");
   const [x, y] = coordinates.split(",");
@@ -30,12 +29,20 @@ const INITIAL_BOARD = {
   next: ["0,0"],
   startCoord: ["0,0"],
   // next: "4,0",
+  dimensions: getLocalStorage(LS_DIMENSIONS_KEY, [4, 4]),
 };
 
 export const boardSlice = createSlice({
   name: "board",
   initialState: INITIAL_BOARD,
   reducers: {
+    changeDimensions: (state, { payload }) => {
+      const newDimensions = [payload.width, payload.height];
+      setLocalStorage(LS_DIMENSIONS_KEY, newDimensions);
+      state.dimensions = newDimensions;
+      state.gameOver = false;
+    },
+
     placeTileOnBoard: (state, { payload: tileRef }) => {
       const tile = JSON.parse(JSON.stringify(tileRef));
       console.log("let us place tiles on boards");
@@ -100,7 +107,8 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { placeTileOnBoard, resetBoard } = boardSlice.actions;
+export const { placeTileOnBoard, resetBoard, changeDimensions } =
+  boardSlice.actions;
 
 export const getBoard = ({ board }) => board.board;
 export const getNext = ({ board }) => board.next[board.turnIndex];
@@ -120,6 +128,10 @@ export const getDensity = ({ board }) => {
   }, 0);
   return (totalConnections / coords.length).toPrecision(2).replace(".00", "");
 };
+
+export const getScale = ({ board }) =>
+  1 / Math.min(board.dimensions[0], board.dimensions[1]);
+export const getDimensions = ({ board }) => board.dimensions;
 
 export default boardSlice.reducer;
 

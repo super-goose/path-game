@@ -2,8 +2,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Tile } from "../tile";
-import { getBoard, getEntries } from "@/state/slices/board";
-import { getScale } from "@/state/slices/settings";
+import { getScale, getBoard, getEntries } from "@/state/slices/board";
 import style from "./board.module.css";
 
 export const Board = ({ nextCoords }) => {
