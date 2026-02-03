@@ -20,12 +20,12 @@ const destringifyEntry = (str) => {
 };
 
 const initialDimensions = getLocalStorage(LS_DIMENSIONS_KEY, [4, 4]);
+const d = initialDimensions[0];
 
 const INITIAL_BOARD = {
   turnIndex: 0,
-  // entry: ["3,4:4"],
-  entry: ["0,-1:0", "8,9:4", "9,0:2", "-1,8:6"],
-  next: ["3,3"],
+  entry: ["0,-1:0", `${d - 1},${d}:4`, `${d},0:2`, `-1,${d - 1}:6`],
+  next: ["0,0", `${d - 1},${d - 1}`, `${d - 1},0`, `0,${d - 1}`],
   // next: ["0,0", "3,3"],
   startCoord: ["3,3"],
   // startCoord: ["0,0", "3,3"],
@@ -49,21 +49,47 @@ export const boardSlice = createSlice({
     },
 
     placeTileOnBoard: (state, { payload: tileRef }) => {
+      /**
+       * a tile looks like:
+       * {
+       *   [position: number(0-7)]: {
+       *     // the position this path exits
+       *     out: number
+       *     // whether or not this path is filled in
+       *     // (the corresponding entry for out will be the same value)
+       *     connected: boolean
+       *   },
+       *   // the order to draw the paths in
+       *   order: number[]
+       * }
+       */
+      // don't modify the object passed in
       const tile = JSON.parse(JSON.stringify(tileRef));
-      console.log("let us place tiles on boards");
+
+      // let us place tiles on boards
       state.board[state.next[state.turnIndex]] = tile;
+
+      // reset all paths to not filled in; we are going to redraw the paths
+      // from the start for each tile placed; this is because some existing
+      // tiles will need to be filled in
       for (const coord in state.board) {
         for (const node in state.board[coord]) {
+          // skip order; we don't care about that property for path building
           if (node === "order") {
             continue;
           }
           state.board[coord][node].connected = false;
         }
       }
+
+      // now for each entry point, fill that path in
       let coord;
       for (const entry of state.entry) {
         let cursor = destringifyEntry(entry);
+
+        // starting with the position this entry empties into
         coord = state.startCoord[state.turnIndex];
+        // avoid browser tab crashes from infinite loops
         let i = 0;
         while (i++ < 1000 && state.board[coord]) {
           // get corresponding "in" location on next tile
@@ -72,11 +98,13 @@ export const boardSlice = createSlice({
           // get "out" location of next tile
           const { out } = state.board[coord][tileEntry];
 
+          // get the next tile coordinate based on which side `out` is on
           const { x, y } = getNextCoord(
             state.board[coord],
             tileEntry,
             keyToCoords(coord),
           );
+
           // set that path to true in tile
           state.board[coord][tileEntry].connected = true;
           state.board[coord][out].connected = true;
