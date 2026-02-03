@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Tile } from "../tile";
 import { getScale, getBoard, getEntries } from "@/state/slices/board";
 import style from "./board.module.css";
+import { getEntryRectProps } from "@/utils/entry-rect-props";
 
 export const Board = ({ nextCoords }) => {
   const board = useSelector(getBoard);
@@ -44,14 +45,13 @@ export const Board = ({ nextCoords }) => {
           {entries.map((entry) => (
             <rect
               key={`entry-${entry}`}
-              x={15 * scale - 1}
-              y={-4 * scale}
-              width={20 * scale + 2}
-              height={8 * scale}
               rx={1}
               stroke="black"
-              strokeWidth={4 * scale}
               fill="var(--highlight-color)"
+              {...getEntryRectProps({
+                entry,
+                scale,
+              })}
             />
           ))}
         </svg>

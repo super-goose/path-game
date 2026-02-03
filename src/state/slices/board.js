@@ -19,17 +19,21 @@ const destringifyEntry = (str) => {
   };
 };
 
+const initialDimensions = getLocalStorage(LS_DIMENSIONS_KEY, [4, 4]);
+
 const INITIAL_BOARD = {
   turnIndex: 0,
-  entry: ["0,-1:0"],
-  // entry: "5,0:6",
+  // entry: ["3,4:4"],
+  entry: ["0,-1:0", "8,9:4", "9,0:2", "-1,8:6"],
+  next: ["3,3"],
+  // next: ["0,0", "3,3"],
+  startCoord: ["3,3"],
+  // startCoord: ["0,0", "3,3"],
+
   board: {},
   score: 0,
   distance: 0,
-  next: ["0,0"],
-  startCoord: ["0,0"],
-  // next: "4,0",
-  dimensions: getLocalStorage(LS_DIMENSIONS_KEY, [4, 4]),
+  dimensions: initialDimensions,
 };
 
 export const boardSlice = createSlice({
@@ -38,6 +42,7 @@ export const boardSlice = createSlice({
   reducers: {
     changeDimensions: (state, { payload }) => {
       const newDimensions = [payload.width, payload.height];
+      console.log({ newDimensions });
       setLocalStorage(LS_DIMENSIONS_KEY, newDimensions);
       state.dimensions = newDimensions;
       state.gameOver = false;
