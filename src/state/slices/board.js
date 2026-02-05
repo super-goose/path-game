@@ -1,4 +1,4 @@
-import { entries, getNextCoord } from "@/utils/add-path";
+import { exitPositionToEntryPosition, getNextCoord } from "@/utils/add-path";
 import { pathsPerTile } from "@/utils/paths-per-tile";
 import { coordsToKey, keyToCoords } from "@/utils/transformers";
 import { getLocalStorage, setLocalStorage } from "@/utils/local-storage";
@@ -93,7 +93,7 @@ export const boardSlice = createSlice({
         let i = 0;
         while (i++ < 1000 && state.board[coord]) {
           // get corresponding "in" location on next tile
-          const tileEntry = entries[cursor.position];
+          const tileEntry = exitPositionToEntryPosition[cursor.position];
 
           // get "out" location of next tile
           const { out } = state.board[coord][tileEntry];
@@ -105,7 +105,7 @@ export const boardSlice = createSlice({
             keyToCoords(coord),
           );
 
-          // set that path to true in tile
+          // set that path to true in the tile
           state.board[coord][tileEntry].connected = true;
           state.board[coord][out].connected = true;
 
@@ -115,7 +115,7 @@ export const boardSlice = createSlice({
         }
       }
 
-      // don't let other people see this logic...
+      //
       let newDistance = 0;
       const newScore = Object.keys(state.board).reduce(
         (cumScore, coordinate) => {
@@ -129,6 +129,7 @@ export const boardSlice = createSlice({
 
       state.score = newScore;
       state.next[state.turnIndex] = coord;
+      state.distance = newDistance;
     },
     resetBoard: (state) => {
       state.entry = INITIAL_BOARD.entry;

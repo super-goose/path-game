@@ -16,7 +16,7 @@ const direction = [
   { x: -1, y: 0 },
 ];
 
-export const entries = [5, 4, 7, 6, 1, 0, 3, 2];
+export const exitPositionToEntryPosition = [5, 4, 7, 6, 1, 0, 3, 2];
 
 export const getNextCoord = (tile, entry, { x, y }) => {
   const dir = direction[tile[entry].out];
