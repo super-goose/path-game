@@ -82,6 +82,7 @@ export const boardSlice = createSlice({
 
       // now for each entry point, fill that path in
       let coord;
+      let nextCoord;
       for (const entry of state.entry) {
         let cursor = destringifyEntry(entry);
 
@@ -111,6 +112,9 @@ export const boardSlice = createSlice({
           // update cursor
           cursor = { x, y, position: out };
           coord = coordsToKey({ x, y });
+          if (iterationIndex === state.turnIndex) {
+            nextCoord = coord;
+          }
         }
       }
 
@@ -127,7 +131,7 @@ export const boardSlice = createSlice({
       );
 
       state.score = newScore;
-      state.next[state.turnIndex] = coord;
+      state.next[state.turnIndex] = nextCoord;
       state.distance = newDistance;
     },
     resetBoard: (state) => {
@@ -144,7 +148,11 @@ export const { placeTileOnBoard, resetBoard, changeDimensions } =
   boardSlice.actions;
 
 export const getBoard = ({ board }) => board.board;
-export const getNext = ({ board }) => board.next[board.turnIndex];
+export const getNext = ({ board }) => {
+  const nexts = board.next;
+  const turn = board.turnIndex;
+  return nexts[turn];
+};
 
 export const getEntries = ({ board }) => board.entry;
 
