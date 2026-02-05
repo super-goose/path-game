@@ -24,11 +24,9 @@ const d = initialDimensions[0];
 
 const INITIAL_BOARD = {
   turnIndex: 0,
-  entry: ["0,-1:0", `${d - 1},${d}:4`, `${d},0:2`, `-1,${d - 1}:6`],
-  next: ["0,0", `${d - 1},${d - 1}`, `${d - 1},0`, `0,${d - 1}`],
-  // next: ["0,0", "3,3"],
-  startCoord: ["3,3"],
-  // startCoord: ["0,0", "3,3"],
+  entry: ["0,-1:0", `${d},0:2`, `${d - 1},${d}:4`, `-1,${d - 1}:6`],
+  next: ["0,0", `${d - 1},0`, `${d - 1},${d - 1}`, `0,${d - 1}`],
+  startCoord: ["0,0", `${d - 1},0`, `${d - 1},${d - 1}`, `0,${d - 1}`],
 
   board: {},
   score: 0,
@@ -66,6 +64,7 @@ export const boardSlice = createSlice({
       // don't modify the object passed in
       const tile = JSON.parse(JSON.stringify(tileRef));
 
+      const b = JSON.parse(JSON.stringify(state.board));
       // let us place tiles on boards
       state.board[state.next[state.turnIndex]] = tile;
 
