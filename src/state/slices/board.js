@@ -64,7 +64,6 @@ export const boardSlice = createSlice({
       // don't modify the object passed in
       const tile = JSON.parse(JSON.stringify(tileRef));
 
-      const b = JSON.parse(JSON.stringify(state.board));
       // let us place tiles on boards
       state.board[state.next[state.turnIndex]] = tile;
 
@@ -86,8 +85,9 @@ export const boardSlice = createSlice({
       for (const entry of state.entry) {
         let cursor = destringifyEntry(entry);
 
+        const iterationIndex = state.entry.indexOf(entry);
         // starting with the position this entry empties into
-        coord = state.startCoord[state.turnIndex];
+        coord = state.startCoord[iterationIndex];
         // avoid browser tab crashes from infinite loops
         let i = 0;
         while (i++ < 1000 && state.board[coord]) {
