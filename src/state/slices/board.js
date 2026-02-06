@@ -24,9 +24,12 @@ const d = initialDimensions[0];
 
 const INITIAL_BOARD = {
   turnIndex: 0,
-  entry: ["0,-1:0", `${d},0:2`, `${d - 1},${d}:4`, `-1,${d - 1}:6`],
-  next: ["0,0", `${d - 1},0`, `${d - 1},${d - 1}`, `0,${d - 1}`],
-  startCoord: ["0,0", `${d - 1},0`, `${d - 1},${d - 1}`, `0,${d - 1}`],
+  entry: ["0,-1:0"],
+  next: ["0,0"],
+  startCoord: ["0,0"],
+  // entry: ["0,-1:0", `${d},0:2`, `${d - 1},${d}:4`, `-1,${d - 1}:6`],
+  // next: ["0,0", `${d - 1},0`, `${d - 1},${d - 1}`, `0,${d - 1}`],
+  // startCoord: ["0,0", `${d - 1},0`, `${d - 1},${d - 1}`, `0,${d - 1}`],
 
   board: {},
   score: 0,
@@ -173,6 +176,7 @@ export const getDensity = ({ board }) => {
 export const getScale = ({ board }) =>
   1 / Math.min(board.dimensions[0], board.dimensions[1]);
 export const getDimensions = ({ board }) => board.dimensions;
+export const getDistance = ({ board }) => board.distance;
 
 export default boardSlice.reducer;
 
