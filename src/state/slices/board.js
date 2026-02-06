@@ -85,7 +85,6 @@ export const boardSlice = createSlice({
 
       // now for each entry point, fill that path in
       let coord;
-      let nextCoord;
       for (const entry of state.entry) {
         let cursor = destringifyEntry(entry);
 
@@ -115,9 +114,8 @@ export const boardSlice = createSlice({
           // update cursor
           cursor = { x, y, position: out };
           coord = coordsToKey({ x, y });
-          if (iterationIndex === state.turnIndex) {
-            nextCoord = coord;
-          }
+
+          state.next[iterationIndex] = coord;
         }
       }
 
@@ -134,7 +132,6 @@ export const boardSlice = createSlice({
       );
 
       state.score = newScore;
-      state.next[state.turnIndex] = nextCoord;
       state.distance = newDistance;
     },
     resetBoard: (state) => {
