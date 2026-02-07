@@ -12,6 +12,7 @@ import {
 } from "@/state/slices/hand";
 import { TileSpace } from "./tile-space";
 import { placeTileOnBoard } from "@/state/slices/board";
+import { NextTileOption, NextTileSection } from "./wrappers";
 
 const calculateDisplayIndex = (index, handLength, i) => {
   return (handLength + index + 1 + i) % handLength;
@@ -89,20 +90,42 @@ export const NextUp = ({}) => {
   }, [hand, index]);
 
   return (
-    <section className={`container ${styles.nextTileContainer}`}>
-      <ControlButton direction="prev" onClick={slideUp} />
-      <ControlButton direction="ccw" onClick={rotateCurrentCCW} />
-      <div className={styles.nextTileTileContainer}>
-        <div
-          className={
-            slidingUp
-              ? styles.slidingUp
-              : slidingDown
-              ? styles.slidingDown
-              : undefined
-          }
-        >
-          {displayHandCarousel.map((tile, i) => (
+    <>
+      <section className={`container ${styles.nextTileContainer}`}>
+        <ControlButton direction="prev" onClick={slideUp} />
+        <ControlButton direction="ccw" onClick={rotateCurrentCCW} />
+        <div className={styles.nextTileTileContainer}>
+          <div
+            className={
+              slidingUp
+                ? styles.slidingUp
+                : slidingDown
+                  ? styles.slidingDown
+                  : undefined
+            }
+          >
+            {displayHandCarousel.map((tile, i) => (
+              <TileSpace
+                key={`tilespace-${tile.order.join("-")}-${i}`}
+                index={i}
+                isFocused={i === 2}
+                isRotatingCCW={rotatingCCW && i === 2}
+                isRotatingCW={rotatingCW && i === 2}
+                tile={tile}
+                playTile={playTile}
+              />
+            ))}
+          </div>
+        </div>
+        <ControlButton direction="cw" onClick={rotateCurrentCW} />
+        <ControlButton direction="next" onClick={slideDown} />
+      </section>
+      <NextTileSection>
+        {hand.map((tile, i) => (
+          <NextTileOption key={`tile-option-${JSON.stringify(tile)}-${index}`}>
+            <div>
+              <ControlButton direction="ccw" onClick={rotateCurrentCCW} />
+            </div>
             <TileSpace
               key={`tilespace-${tile.order.join("-")}-${i}`}
               index={i}
@@ -112,11 +135,12 @@ export const NextUp = ({}) => {
               tile={tile}
               playTile={playTile}
             />
-          ))}
-        </div>
-      </div>
-      <ControlButton direction="cw" onClick={rotateCurrentCW} />
-      <ControlButton direction="next" onClick={slideDown} />
-    </section>
+            <div>
+              <ControlButton direction="cw" onClick={rotateCurrentCW} />
+            </div>
+          </NextTileOption>
+        ))}
+      </NextTileSection>
+    </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./control-button.module.css";
+import { ControlButtonButton } from "./wrappers";
 
 const ARC_PATH = "M 65,35 A 25,25 0,1,1 35,35";
 const ROTATE_ARROW_PATH = "M 33,35 L 36,34 L 35,37 Z";
@@ -9,7 +10,7 @@ const RotateArrow = ({ direction }) => (
     style={
       direction === "CCW"
         ? {
-            transform: "scaleX(-1)",
+            transform: "scaleY(-1)",
           }
         : {}
     }
@@ -80,11 +81,11 @@ const SYMBOL = {
 };
 
 export const ControlButton = ({ direction, onClick }) => (
-  <button
+  <ControlButtonButton
     type="button"
     className={[`rotate-icon ${direction} ${style.controlButton}`]}
     onClick={onClick}
   >
     {SYMBOL[direction]}
-  </button>
+  </ControlButtonButton>
 );
