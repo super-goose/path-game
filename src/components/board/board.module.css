@@ -1,5 +1,4 @@
 .board {
-  width: 100vw;
   height: fit-content;
   display: flex;
   flex-grow: 1;
@@ -18,5 +17,11 @@
   .board svg {
     height: calc(100vh - 7rem);
     width: calc(100vh - 7rem);
+  }
+}
+
+@media (orientation: portrait) {
+  .board {
+    width: 100vw;
   }
 }

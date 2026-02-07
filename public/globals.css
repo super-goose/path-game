@@ -21,3 +21,21 @@ button {
   font-size: inherit;
   font-family: inherit;
 }
+
+@keyframes rotatingCW {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(90deg);
+  }
+}
+
+@keyframes rotatingCCW {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(-90deg);
+  }
+}
