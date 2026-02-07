@@ -11,14 +11,10 @@ export const TileSpace = ({
   playTile,
   isRotatingCCW,
   isRotatingCW,
-  isFocused,
 }) => {
   const onClickTile = useCallback(() => {
-    if (!isFocused) {
-      return;
-    }
     playTile(index);
-  }, [isFocused, playTile, index]);
+  }, [playTile, index]);
 
   return (
     <TileSpaceContainer

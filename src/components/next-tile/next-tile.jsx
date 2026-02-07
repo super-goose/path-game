@@ -141,7 +141,6 @@ export const NextUp = ({}) => {
             <TileSpace
               key={`tilespace-${tile.order.join("-")}-${i}`}
               index={i}
-              isFocused={i === 2}
               isRotatingCCW={rotatingCCW && i === 2}
               isRotatingCW={rotatingCW && i === 2}
               tile={tile}

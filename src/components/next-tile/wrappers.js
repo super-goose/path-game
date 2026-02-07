@@ -7,11 +7,19 @@ export const NextTileSection = styled.section`
   align-items: center;
   width: 100vw;
   margin: auto;
+
+  @media (max-aspect-ratio: 2/1) {
+    flex-direction: column;
+  }
 `;
 
 export const NextTileOption = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-aspect-ratio: 2/1) {
+    flex-direction: row;
+  }
 `;
 
 export const ControlButtonButton = styled.button`
