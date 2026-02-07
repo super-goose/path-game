@@ -19,7 +19,7 @@ export const NextTileOption = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (orientation: landscape) and (max-aspect-ratio: 2/1) and (min-aspect-ratio: 3/2) {
+  @media (orientation: landscape) and (max-aspect-ratio: 2/1) and (min-aspect-ratio: 5/4) {
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -39,6 +39,10 @@ export const ControlButtonButton = styled.button`
 
   @media (orientation: landscape) {
     height: 8rem;
+  }
+
+  @media (orientation: landscape) and (max-aspect-ratio: 3/2) {
+    height: 5rem;
   }
 `;
 
@@ -62,5 +66,12 @@ export const TileSvgContainer = styled.div`
     height: 128px;
     margin-left: 3rem;
     margin-right: 3rem;
+  }
+
+  @media (orientation: landscape) and (max-aspect-ratio: 3/2) {
+    width: 96px;
+    height: 96px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
   }
 `;
