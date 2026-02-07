@@ -8,7 +8,7 @@ export const NextTileSection = styled.section`
   width: 100vw;
   margin: auto;
 
-  @media (max-aspect-ratio: 2/1) {
+  @media (orientation: landscape) and (max-aspect-ratio: 2/1) {
     flex-direction: column;
   }
 `;
@@ -16,9 +16,13 @@ export const NextTileSection = styled.section`
 export const NextTileOption = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  @media (max-aspect-ratio: 2/1) {
+  @media (orientation: landscape) and (max-aspect-ratio: 2/1) and (min-aspect-ratio: 3/2) {
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -32,6 +36,10 @@ export const ControlButtonButton = styled.button`
 
   justify-content: center;
   display: flex;
+
+  @media (orientation: landscape) {
+    height: 8rem;
+  }
 `;
 
 export const TileSpaceContainer = styled.div`
@@ -46,6 +54,13 @@ export const TileSpaceContainer = styled.div`
 
 export const TileSvgContainer = styled.div`
   background-color: var(--light-background);
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
+
+  @media (orientation: landscape) {
+    width: 128px;
+    height: 128px;
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
 `;
