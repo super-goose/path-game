@@ -43,10 +43,14 @@ export const boardSlice = createSlice({
   reducers: {
     changeDimensions: (state, { payload }) => {
       const newDimensions = [payload.width, payload.height];
-      console.log({ newDimensions });
       setLocalStorage(LS_DIMENSIONS_KEY, newDimensions);
       state.dimensions = newDimensions;
       state.gameOver = false;
+
+      state.board = INITIAL_BOARD.board;
+      state.score = INITIAL_BOARD.score;
+      state.distance = INITIAL_BOARD.distance;
+      state.next = INITIAL_BOARD.next;
     },
 
     placeTileOnBoard: (state, { payload: tileRef }) => {
