@@ -2,7 +2,17 @@ import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getScore, changeDimensions } from "@/state/slices/board";
 import { setGameOver } from "@/state/slices/settings";
-import style from "./header.module.css";
+
+import {
+  Hamburger,
+  HeaderContainer,
+  Instruction,
+  MenuButton,
+  MenuContainer,
+  MenuItem,
+  MenuOverlay,
+  Score,
+} from "./wrappers";
 
 export const Header = ({}) => {
   const [menuExpanded, setMenuExpanded] = useState(false);
@@ -47,37 +57,30 @@ export const Header = ({}) => {
   }, [changeSize, dispatch]);
 
   return (
-    <header className={style.headerContainer}>
-      <div className={[style.headerElement, style.instruction].join(" ")}>
-        Make a long path
-      </div>
-      <div className={[style.headerElement, style.score].join(" ")}>
+    <HeaderContainer>
+      <Instruction>Make a long path</Instruction>
+      <Score>
         <span>score: </span>
         <span style={{ marginLeft: ".5rem" }}>{score}</span>
-      </div>
+      </Score>
       <div>
-        <div
-          className={[style.headerElement, style.menuButton].join(" ")}
-          onClick={() => setMenuExpanded(!menuExpanded)}
-        >
-          <div className={[style.hamburger]} />
-          <div className={[style.hamburger]} />
-          <div className={[style.hamburger]} />
-        </div>
+        <MenuButton onClick={() => setMenuExpanded(!menuExpanded)}>
+          <Hamburger />
+          <Hamburger />
+          <Hamburger />
+        </MenuButton>
         {menuExpanded && (
-          <div className={[style.menuContainer]}>
-            {menuOptions.map(({ display, onClick }) => (
-              <div
-                key={`menu-item-${display}`}
-                className={[style.menuItem]}
-                onClick={onClick}
-              >
-                {display}
-              </div>
-            ))}
-          </div>
+          <MenuOverlay onClick={() => setMenuExpanded(false)}>
+            <MenuContainer>
+              {menuOptions.map(({ display, onClick }) => (
+                <MenuItem key={`menu-item-${display}`} onClick={onClick}>
+                  {display}
+                </MenuItem>
+              ))}
+            </MenuContainer>
+          </MenuOverlay>
         )}
       </div>
-    </header>
+    </HeaderContainer>
   );
 };
