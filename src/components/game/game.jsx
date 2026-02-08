@@ -22,6 +22,23 @@ import styles from "@/components/game/game.module.css";
   light="#00ffff" dark="#00aaaa"
   light="#ffaa00" dark="#aa6600"
   light="#ff00ff" dark="#aa00aa"
+
+
+
+
+
+  "--light-background": "#a9d17f",
+          "--blackish": "#222222",
+          "--highlight-color": "#ba909d",
+          "--accent-color": "#7e3b94",
+          "--whitish": "#eeeeff",
+Second conversion (swap red and blue channels):
+
+"--light-background": "#7fa9d1",
+          "--blackish": "#222222",
+          "--highlight-color": "#9dba90",
+          "--accent-color": "#943b7e",
+          "--whitish": "#ffeeed",
  */
 export const Game = () => {
   const dispatch = useDispatch();
@@ -52,6 +69,12 @@ export const Game = () => {
           "--highlight-color": "#90ba9d",
           "--accent-color": "#3b7e94",
           "--whitish": "#eeeeff",
+
+          // "--light-background": "#a9d17f",
+          // "--blackish": "#222222",
+          // "--highlight-color": "#ba909d",
+          // "--accent-color": "#7e3b94",
+          // "--whitish": "#eeeeff",
         }}
         className={styles.main}
       >
