@@ -52,8 +52,9 @@ export const TileSpaceContainer = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  ${($rotatingCW) => ($rotatingCW ? "animation: rotatingCW 0.5s 1;" : "")}
-  ${($rotatingCCW) => ($rotatingCCW ? "animation: rotatingCCW 0.5s 1;" : "")}
+  ${({ $rotatingCW }) => ($rotatingCW ? "animation: rotatingCW 0.5s 1;" : "")}
+  ${({ $rotatingCCW }) =>
+    $rotatingCCW ? "animation: rotatingCCW 0.5s 1;" : ""}
 `;
 
 export const TileSvgContainer = styled.div`

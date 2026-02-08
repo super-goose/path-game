@@ -14,8 +14,8 @@ import { placeTileOnBoard } from "@/state/slices/board";
 import { NextTileOption, NextTileSection } from "./wrappers";
 
 export const NextUp = ({}) => {
-  const [rotatingCW, setRotatingCW] = useState(false);
-  const [rotatingCCW, setRotatingCCW] = useState(false);
+  const [rotatingCW, setRotatingCW] = useState(-1);
+  const [rotatingCCW, setRotatingCCW] = useState(-1);
   const hand = useSelector(getHand);
   const dispatch = useDispatch();
 
@@ -23,28 +23,32 @@ export const NextUp = ({}) => {
     (index) => {
       // TODO: you need this link here to prevent the flash:
       // https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event
-      if (rotatingCCW) {
+      if (rotatingCCW !== -1) {
         return;
       }
-      setRotatingCCW(true);
+      console.log("set rotating on");
+      setRotatingCCW(index);
       setTimeout(() => {
         dispatch(rotateCCW(index));
-        setRotatingCCW(false);
-      }, 500);
+        console.log("set rotating off");
+        setRotatingCCW(-1);
+      }, 498);
     },
     [dispatch, rotatingCCW],
   );
 
   const rotateCurrentCW = useCallback(
     (index) => {
-      if (rotatingCW) {
+      if (rotatingCW !== -1) {
         return;
       }
-      setRotatingCW(true);
+      console.log("set rotating on");
+      setRotatingCW(index);
       setTimeout(() => {
         dispatch(rotateCW(index));
-        setRotatingCW(false);
-      }, 500);
+        console.log("set rotating off");
+        setRotatingCW(-1);
+      }, 498);
     },
     [dispatch, rotatingCW],
   );
@@ -72,8 +76,8 @@ export const NextUp = ({}) => {
           <TileSpace
             key={`tilespace-${tile.order.join("-")}-${i}`}
             index={i}
-            isRotatingCCW={rotatingCCW && i === 2}
-            isRotatingCW={rotatingCW && i === 2}
+            isRotatingCCW={rotatingCCW === i}
+            isRotatingCW={rotatingCW === i}
             tile={tile}
             playTile={playTile}
           />
