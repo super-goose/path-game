@@ -56,11 +56,9 @@ const SYMBOL = {
 };
 
 export const ControlButton = ({ direction, onClick }) => (
-  <ControlButtonButton
-    type="button"
-    className={[`rotate-icon ${direction} ${style.controlButton}`]}
-    onClick={onClick}
-  >
-    {SYMBOL[direction]}
-  </ControlButtonButton>
+  <div>
+    <ControlButtonButton type="button" onClick={onClick}>
+      {SYMBOL[direction]}
+    </ControlButtonButton>
+  </div>
 );

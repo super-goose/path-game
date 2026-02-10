@@ -67,12 +67,7 @@ export const NextUp = ({}) => {
     <NextTileSection>
       {hand.map((tile, i) => (
         <NextTileOption key={`tile-option-${JSON.stringify(tile)}-${i}`}>
-          <div>
-            <ControlButton
-              direction="ccw"
-              onClick={() => rotateCurrentCCW(i)}
-            />
-          </div>
+          <ControlButton direction="ccw" onClick={() => rotateCurrentCCW(i)} />
           <TileSpace
             key={`tilespace-${tile.order.join("-")}-${i}`}
             index={i}
@@ -81,9 +76,7 @@ export const NextUp = ({}) => {
             tile={tile}
             playTile={playTile}
           />
-          <div>
-            <ControlButton direction="cw" onClick={() => rotateCurrentCW(i)} />
-          </div>
+          <ControlButton direction="cw" onClick={() => rotateCurrentCW(i)} />
         </NextTileOption>
       ))}
     </NextTileSection>

@@ -6,7 +6,7 @@ export const NextTileSection = styled.section`
   justify-content: space-around;
   align-items: center;
   width: 100vw;
-  margin: auto;
+  margin-bottom: 1rem;
 
   @media (orientation: landscape) and (max-aspect-ratio: 2/1) {
     flex-direction: column;
