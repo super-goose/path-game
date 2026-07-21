@@ -32,7 +32,8 @@ export const ControlButtonButton = styled.button`
   color: var(--whitish);
   border-radius: 1rem;
   border: 2px solid var(--whitish);
-  height: 5rem;
+  height: 3.5rem;
+  width: 100%;
 
   justify-content: center;
   display: flex;

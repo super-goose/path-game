@@ -1,0 +1,8 @@
+{
+  "appId": "games.supergoose.longestpath",
+  "appName": "Longest Path",
+  "webDir": "out",
+  "server": {
+    "androidScheme": "https"
+  }
+}

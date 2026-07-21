@@ -38,3 +38,5 @@ next-env.d.ts
 .old-path
 
 public/Comfortaa
+
+android/keystore.properties
