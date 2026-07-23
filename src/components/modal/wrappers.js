@@ -21,7 +21,7 @@ export const ModalContainer = styled.div`
   align-items: center;
 
   width: 80vw;
-  height: 60vh;
+  // height: 60vh;
   padding: 1rem;
 
   border-radius: 1rem;
@@ -94,9 +94,15 @@ export const Sample = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%;
+  width: 25%;
 `;
 
 export const SampleElement = styled.div`
   display: flex;
+  font-size: 1rem;
+  text-align: center;
+
+  & > div {
+    transform: scale(0.75);
+  }
 `;

@@ -44,7 +44,7 @@ export const Colors = () => {
   return (
     <ModalOverlay onClick={dismiss}>
       <ModalContainer>
-        <ModalHeader>Select a color scheme</ModalHeader>
+        <ModalHeader>Color schemes</ModalHeader>
         <ModalContent>
           <SampleContainer>
             {Object.keys(COLORS).map((color, index) => (

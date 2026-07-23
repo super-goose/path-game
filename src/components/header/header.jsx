@@ -46,7 +46,7 @@ export const Header = ({}) => {
       { display: "change to 5x5", onClick: () => changeSize(5) },
       { display: "change to 8x8", onClick: () => changeSize(8) },
       { display: "change to 9x9", onClick: () => changeSize(9) },
-      { display: "change to 15x15", onClick: () => changeSize(15) },
+      { display: "change to 12x12", onClick: () => changeSize(12) },
       {
         display: "change color theme",
         onClick: () => {
@@ -54,13 +54,13 @@ export const Header = ({}) => {
           setMenuExpanded(false);
         },
       },
-      // {
-      //   display: "game over state on",
-      //   onClick: () => {
-      //     dispatch(setGameOver(true));
-      //     setMenuExpanded(false);
-      //   },
-      // },
+      {
+        display: "game over state on",
+        onClick: () => {
+          dispatch(setGameOver(true));
+          setMenuExpanded(false);
+        },
+      },
     ];
   }, [changeSize, dispatch]);
 
