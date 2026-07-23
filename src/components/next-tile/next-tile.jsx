@@ -63,6 +63,7 @@ export const NextUp = ({}) => {
     [dispatch, hand],
   );
 
+  console.log(hand.map((tile) => JSON.stringify(tile)));
   return (
     <NextTileSection>
       {hand.map((tile, i) => (

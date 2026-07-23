@@ -81,3 +81,22 @@ export const PathColor = styled.span`
   font-weight: bold;
   text-shadow: 2px 2px 2px var(--blackish);
 `;
+
+export const SampleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+`;
+
+export const Sample = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+`;
+
+export const SampleElement = styled.div`
+  display: flex;
+`;

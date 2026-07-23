@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getScore, changeDimensions } from "@/state/slices/board";
-import { setGameOver } from "@/state/slices/settings";
+import { setGameOver, setShowColors } from "@/state/slices/settings";
 
 import {
   Hamburger,
@@ -42,17 +42,25 @@ export const Header = ({}) => {
           setMenuExpanded(false);
         },
       },
-      {
-        display: "game over state on",
-        onClick: () => {
-          dispatch(setGameOver(true));
-          setMenuExpanded(false);
-        },
-      },
       { display: "change to 4x4", onClick: () => changeSize(4) },
       { display: "change to 5x5", onClick: () => changeSize(5) },
       { display: "change to 8x8", onClick: () => changeSize(8) },
       { display: "change to 9x9", onClick: () => changeSize(9) },
+      { display: "change to 15x15", onClick: () => changeSize(15) },
+      {
+        display: "change color theme",
+        onClick: () => {
+          dispatch(setShowColors(true));
+          setMenuExpanded(false);
+        },
+      },
+      // {
+      //   display: "game over state on",
+      //   onClick: () => {
+      //     dispatch(setGameOver(true));
+      //     setMenuExpanded(false);
+      //   },
+      // },
     ];
   }, [changeSize, dispatch]);
 
