@@ -1,4 +1,4 @@
-package com.pathgame.longestpath;
+package games.supergoose.path;
 
 import com.getcapacitor.BridgeActivity;
 

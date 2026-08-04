@@ -54,13 +54,13 @@ export const Header = ({}) => {
           setMenuExpanded(false);
         },
       },
-      {
-        display: "game over state on",
-        onClick: () => {
-          dispatch(setGameOver(true));
-          setMenuExpanded(false);
-        },
-      },
+      // {
+      //   display: "game over state on",
+      //   onClick: () => {
+      //     dispatch(setGameOver(true));
+      //     setMenuExpanded(false);
+      //   },
+      // },
     ];
   }, [changeSize, dispatch]);
 

@@ -1,5 +1,5 @@
 {
-  "appId": "games.supergoose.longestpath",
+  "appId": "games.supergoose.path",
   "appName": "Longest Path",
   "webDir": "out",
   "server": {
