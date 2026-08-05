@@ -26,6 +26,12 @@ cache will serve stale native config.
 
 ## 2. Build the app
 
+Build the Next application
+
+```bash
+npm run build
+```
+
 Debug build (for local testing):
 
 ```bash
