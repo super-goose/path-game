@@ -57,7 +57,7 @@ export const ModalContent = styled(ModalSection)`
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
   flex-grow: 1;
-  margin: 2rem 0;
+  margin: 0 0 2rem;
 `;
 
 export const ModalFooter = styled(ModalSection)`
